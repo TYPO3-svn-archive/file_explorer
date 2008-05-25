@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <meta>
+       <langDisable>1</langDisable>
+	  <!--  <langChildren>1</langChildren>!-->
+        </meta>
+  <sheets>
+	<sDEF>
+	  <ROOT>
+		<TCEforms>
+			<sheetTitle>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.sheet_general</sheetTitle>
+		</TCEforms>
+	    <type>array</type>
+	    <el>
+		  <default_view>
+			  <TCEforms>
+
+				<label>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.default_view</label>
+				<config>
+					<type>select</type>
+					<items type="array">
+						<numIndex index="0" type="array">
+							<numIndex index="0">listview</numIndex>
+							<numIndex index="1">list</numIndex>
+						</numIndex>
+	                    <numIndex index="6" type="array">
+	                        <numIndex index="0">preview</numIndex>
+	                        <numIndex index="1">review</numIndex>
+	                    </numIndex>
+					</items>
+					<maxitems>1</maxitems>
+					<size>1</size>
+				</config>
+			  </TCEforms>
+	    </default_view>
+
+  		<root_page>
+		  	<TCEforms>
+			<exclude>1</exclude>
+			<label>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.startingpoint</label>
+			<config>
+				<type>group</type>
+				<internal_type>db</internal_type>
+				<allowed>pages</allowed>
+				<size>3</size>
+				<maxitems>1</maxitems>
+				<minitems>0</minitems>
+				<show_thumbs>1</show_thumbs>
+			</config>
+		  	</TCEforms>
+		</root_page>
+
+        <valid_fe_user_groups>
+		  	<TCEforms>
+			<exclude>1</exclude>
+			<label>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.valid_fe_user_groups</label>
+			<config>
+				<type>group</type>
+				<internal_type>db</internal_type>
+				<allowed>fe_groups</allowed>
+				<size>3</size>
+				<maxitems>22</maxitems>
+				<minitems>0</minitems>
+				<show_thumbs>1</show_thumbs>
+			</config>
+		  	</TCEforms>
+		</valid_fe_user_groups>
+
+		<root_fe_user_groups>
+		  	<TCEforms>
+			<exclude>1</exclude>
+			<label>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.root_fe_user_groups</label>
+			<config>
+				<type>group</type>
+				<internal_type>db</internal_type>
+				<allowed>fe_groups</allowed>
+				<size>3</size>
+				<maxitems>22</maxitems>
+				<minitems>0</minitems>
+				<show_thumbs>1</show_thumbs>
+			</config>
+		  	</TCEforms>
+		</root_fe_user_groups>
+
+		  <template>
+            <TCEforms>
+                <label>LLL:EXT:file_explorer/locallang_tca.xml:file_explorer.template_file</label>
+                <config>
+                    <type>input</type>
+                    <eval>trim</eval>
+                    <default></default>
+                    <wizards type="array">
+                        <_PADDING>2</_PADDING>
+                        <link type="array">
+                            <type>popup</type>
+                            <title>Link</title>
+                            <icon>link_popup.gif</icon>
+                            <script>browse_links.php?mode=wizard&amp;act=file</script>
+                            <params type="array">
+                                <blindLinkOptions>page,url,mail,spec</blindLinkOptions>
+                                <allowedExtensions>htm,html,tmpl,tpl</allowedExtensions>
+                            </params>
+                            <JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
+                        </link>
+                    </wizards>
+                </config>
+            </TCEforms>
+        </template>
+
+	    </el>
+	  </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>
