@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'file_explorer'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_fileexplorer_files">files</label>
+			<label index="tx_fileexplorer_files.title">title</label>
+			<label index="tx_fileexplorer_files.file_info">fileinfos</label>
+			<label index="tx_fileexplorer_files.description">description</label>
+			<label index="tx_fileexplorer_files.file">file</label>
+			<label index="tx_fileexplorer_files.feCrUserId">Fileexplorer frontend author</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_read">Fileexplorer read permission</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_write">Fileexplorer write permission</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_feCrUserId">Fileexplorer frontend author</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_readPublic">Fileexplorer allow read public</label>
+			<label index="tt_content.list_type_pi1">Fileexplorer</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tx_fileexplorer_files">dateien</label>
+			<label index="tx_fileexplorer_files.title">Titel</label>
+			<label index="tx_fileexplorer_files.file_info">Datei-Infos</label>
+			<label index="tx_fileexplorer_files.description">Beschreibung</label>
+			<label index="tx_fileexplorer_files.file">Datei</label>
+			<label index="tx_fileexplorer_files.feCrUserId">Fileexplorer Frontend Author</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_read">Fileexplorer Leserechte</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_write">Fileexplorer Bearbeitungsrechte</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_feCrUserId">Fileexplorer Frontend Author</label>
+			<label index="pages.tx_fileexplorer_tx_fileexplorer_readPublic">Fileexplorer oeffentliches Lesen erlauben</label>
+			<label index="tt_content.list_type_pi1">Fileexplorer</label>
+		</languageKey>
+	</data>
+</T3locallang>
