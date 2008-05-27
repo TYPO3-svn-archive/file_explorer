@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+<meta type="array">
+        <type>module</type>
+        <description>Language labels for plugin &quot;tx_fileexplorer_pi1&quot;</description>
+</meta>
+<data type="array">
+ <languageKey index="default" type="array">
+        <label index="link.back">..</label>
+		<label index="link.back.desc">go one folder up</label>
+        <label index="link.create_folder">Create new folder</label>
+        <label index="link.create_file">new file [via HTML]</label>
+        <label index="link.create_file_flash">new file [via Flash]</label>
+        <label index="link.edit_folder">[edit]</label>
+        <label index="link.edit_file">[edit]</label>
+        <label index="link.delete_file">[X]</label>
+        <label index="form.submit">save</label>
+        <label index="form.title">Title:</label>
+        <label index="form.file">File:</label>
+        <label index="form.description">Description:</label>
+        <label index="form.permRead">Read</label>
+		<label index="form.permWrite">Write</label>
+        <label index="form.uploadedFileTitle">current file:</label>
+		<label index="form.noPerm">You don't have write permission in this folder!</label>
+        <label index="form.success">Action completed successfully.</label>
+        <label index="form.submitDisabled">Please wait...</label>
+        <label index="detail.no_description">- empty -</label>
+		<label index="detail.note">Description: </label>
+        <label index="change_view.review">miniature view</label>
+        <label index="change_view.list">list view</label>
+        <label index="note.no_permissions">(You do not have the necessary rights.)</label>
+        <label index="note.delete_file">Do you really want to delete this file: </label>
+        <label index="note.delete_folder">Do you really want to delete this folder: </label>
+		<label index="contextMenu.edit">Edit</label>
+		<label index="contextMenu.delete">Delete</label>
+		<label index="contextMenu.view">View</label>
+		<label index="contextMenu.download">Download</label>
+		<label index="contextMenu.browse">Browse</label>
+		<label index="list.createDate">create date</label>
+		<label index="list.author">author</label>
+		<label index="list.size">size</label>
+		<label index="js.folderDelConfirm">Are you sure to delete this folder?\n\"</label>
+		<label index="js.fileDelConfirm">Are you sure to delete this file?\n\"</label>
+		<label index="extract.descriptionFile">File extracted from </label>
+
+
+		<label index="error.fileTooBig">File is too big, maximum is: </label>
+		<label index="error.noFile">No file found.</label>
+		<label index="error.wrongFileType">Wrong not allowed filetype, allowed: </label>
+		<label index="error.uploadFatalInternal">An internal error occured while uploading and storing file(s).</label>
+		<label index="error.wrongFileType">Wrong not allowed filetype, allowed: </label>
+		<label index="error.folderExisting">Folder already exists.</label>
+		<label index="error.renameFolderFs">Error renaming folder on fs.</label>
+		<label index="error.findingPath">Fatal error getting path.</label>
+
+
+
+        <label index="error.field_validation">You did not fill in all fields: </label>
+    </languageKey>
+    <languageKey index="de" type="array">
+        <label index="link.back">..</label>
+		<label index="link.back.desc">Ordner aufwärts gehen</label>
+        <label index="link.create_folder">neuen Ordner anlegen</label>
+        <label index="link.create_file">neue Datei [via HTML]</label>
+        <label index="link.create_file_flash">neue Datei [via Flash]</label>
+        <label index="link.edit_folder">[ändern]</label>
+        <label index="link.edit_file">[ändern]</label>
+        <label index="link.delete_file">[X]</label>
+        <label index="form.submit">speichern</label>
+        <label index="form.title">Titel:</label>
+        <label index="form.file">Datei:</label>
+        <label index="form.description">Beschreibung:</label>
+		<label index="form.permRead">Lesen</label>
+		<label index="form.permWrite">Schreiben</label>
+        <label index="form.uploadedFileTitle">aktuelle Datei:</label>
+		<label index="form.noPerm">Sie haben keine Schreibrechte für diesen Ordner</label>
+        <label index="form.submitDisabled">Bitte warten...</label>
+		<label index="form.success">Aktion erfolgreich durchgeführt.</label>
+        <label index="detail.no_description">- leer -</label>
+		<label index="detail.note">Beschreibung:</label>
+        <label index="change_view.review">Miniatur-Ansicht</label>
+        <label index="change_view.list">Listen-Ansicht</label>
+        <label index="note.no_permissions">(Ihnen fehlen die Rechte)</label>
+        <label index="note.delete_file">Wollen Sie die Datei wirklich loeschen: </label>
+        <label index="note.delete_folder">Wollen Sie den Ordner wirklich loeschen: </label>
+		<label index="contextMenu.edit">Ändern</label>
+		<label index="contextMenu.delete">Löschen</label>
+		<label index="contextMenu.view">Betrachten</label>
+		<label index="contextMenu.download">Download</label>
+		<label index="contextMenu.browse">Wählen</label>
+		<label index="list.createDate">Erstellungsdatum</label>
+		<label index="list.author">Autor</label>
+		<label index="list.size">Grösse</label>
+		<label index="js.folderDelConfirm">Wollen Sie diesen Ordner wirklich loeschen?\n\"</label>
+		<label index="js.fileDelConfirm">Wollen Sie diese Datei wirklich loeschen?\n\"</label>
+		<label index="extract.descriptionFile">Datei extrahiert aus </label>
+
+		<label index="error.fileTooBig">Datei ist zu gross, maximum: </label>
+		<label index="error.wrongFileType">Nicht erlaubtes Dateformat, erlaubte: </label>
+		<label index="error.uploadFatalInternal">Ein interner Fehler beim Überagen oder Abspeichern ist aufgetreten.</label>
+		<label index="error.noFile">Keine Datei gefunden.</label>
+		<label index="error.folderExisting">Dieser Ordner existiert bereits.</label>
+		<label index="error.renameFolderFs">Fehler beim Umbenennen des Ordners im Dateibaum.</label>
+		<label index="error.findingPath">Fataler Fehler: Pfad nicht gefunden.</label>
+
+
+        <label index="error.field_validation">Sie haben nicht alle Felder ausgefuellt: </label>
+    </languageKey>
+</data>
+</T3locallang>
