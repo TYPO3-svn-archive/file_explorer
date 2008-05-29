@@ -160,7 +160,6 @@ class tx_fileexplorer_view
 
 		}
 
-
 	    if($selectedType != ''){
 	    	$thumb['params'] = 'class="fileexplorer_thumbIcon"';
 	    	$thumb['file']   = $this->base->conf['mimetypes.'][$selectedType.'.']['file_name'];
@@ -417,7 +416,6 @@ class tx_fileexplorer_view
 		$markerArray['###SIZE###'] =$this->base->pi_getLL('list.size');
 		$markerArray['###AUTHOR###'] = $this->base->pi_getLL('list.author');
 
-// 		$this->cObj->substituteMarkerArrayCached($template_back, $markerArray, array(), $wrappedSubpartArray);
 	    $result = $this->cObj->substituteMarkerArrayCached($template_item, $markerArray, $subpartArray,$wrappedSubpartArray);
 
 		return $result;
