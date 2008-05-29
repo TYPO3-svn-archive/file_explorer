@@ -155,7 +155,7 @@ class tx_fileexplorer_form
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
-			$out['subpartArray']['###NO_PERMISSIONS###']['###NO_PERMISSIONS_TEXT###'] = $this->base->pi_getLL('form.noPerm');
+			$out['markerArray']['###NO_PERMISSIONS_TEXT###'] =  $this->base->pi_getLL('form.noPerm');
 		}
         return $out;
 	}
@@ -217,7 +217,7 @@ class tx_fileexplorer_form
         }
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
-			$out['subpartArray']['###NO_PERMISSIONS###']['###NO_PERMISSIONS_TEXT###'] = $this->base->pi_getLL('form.noPerm');
+			$out['markerArray']['###NO_PERMISSIONS_TEXT###'] =  $this->base->pi_getLL('form.noPerm');
         }
 		$out['markerArray']['###PERM_READ###'] = $this->base->pi_getLL('form.permRead');
 		$out['markerArray']['###TITLE###'] = $this->base->pi_getLL('form.title');
