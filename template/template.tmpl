@@ -1,6 +1,5 @@
 
-
-	<!-- ###HEADER_ADDITIONS### begin
+<!-- ###HEADER_ADDITIONS### begin
 			This section will be appended to html headers of the output. Allows you to include CSS, JS, etc
 			Markers in this section:
 				SITE_REL_PATH	- path to file relative to web root, ending with slash
@@ -13,11 +12,29 @@
 	<script type="text/javascript" src="###SITE_REL_PATH###js/flexigrid.pack.js"></script>
 	<script type="text/javascript" src="###SITE_REL_PATH###js/contextmenu.js"></script>
 
-	<!-- ###HEADER_ADDITIONS### end -->
+<!-- ###HEADER_ADDITIONS### end -->
 
 
-<!--  ###LIST_TEMPLATE### start -->
 
+<!--  ###LIST_TEMPLATE### start
+	Available markers in this section:
+				###LINK_CREATE_FOLDER_TEXT###
+				###LINK_CREATE_FILE_TEXT###
+				###LINK_CREATE_FILE_FLASH_TEXT###
+
+	            ###CHANGE_VIEW###
+            	###NAVIGATION_PATH###
+            	###CREATE_DATE###
+            	###SIZE###
+				###AUTHOR###
+
+				###ICON###
+				###FILENAME###
+				###DATE_CREATE###
+	        	###FILE_SIZE###
+	        	###AUTHOR###
+
+-->
 
     <!--  ###HEADER### start -->
 
@@ -99,10 +116,9 @@
 	<tbody>
     </table>
 
+	<!-- stuff for the javascript menu START-->
 
     <br style="clear:both;" />
-
-
 
     <div class="contextMenu" id="cMenu_folder">
     <ul>
@@ -119,17 +135,34 @@
 	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
 	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
 	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
-<!-- 	    <li id="cut">###CUT_ICON### ###CUT_TEXT###</li>			 -->
+	<!-- 	    <li id="cut">###CUT_ICON### ###CUT_TEXT###</li>			 -->
 	</ul>
 	</div>
+
+	<!-- stuff for the javascript menu END -->
 
 <!--  ###LIST_TEMPLATE### end -->
 
 
 
+<!--  ###REVIEW_TEMPLATE### start
+				Available markers in this section:
+				###LINK_CREATE_FOLDER_TEXT###
+				###LINK_CREATE_FILE_TEXT###
+				###LINK_CREATE_FILE_FLASH_TEXT###
 
-<!--  ###REVIEW_TEMPLATE### start -->
+	            ###CHANGE_VIEW###
+            	###NAVIGATION_PATH###
+            	###CREATE_DATE###
+            	###SIZE###
+				###AUTHOR###
 
+				###ICON###
+				###FILENAME###
+				###DATE_CREATE###
+	        	###FILE_SIZE###
+	        	###AUTHOR###
+			-->
 
     <!--  ###HEADER### start -->
     <div style="display:block;padding-bottom:10px;">
@@ -200,6 +233,9 @@
         <!--  ###ITEM### end -->
 
     <!--  ###FILELIST### end -->
+
+	<!-- stuff for the javascript menu START-->
+
     <br style="clear:both;" />
     </div>
 
@@ -220,25 +256,34 @@
 	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
 	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
 	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
-<!-- 		<li id="cut">###CUT_ICON### ###CUT_TEXT###</li> -->
+	<!-- 		<li id="cut">###CUT_ICON### ###CUT_TEXT###</li> -->
 	</ul>
 	</div>
+	<!-- stuff for the javascript menu END -->
+
 
 <!--  ###REVIEW_TEMPLATE### end -->
 
 
 
-<!--  ###DETAIL_TEMPLATE### start -->
-<div style="padding:20px;background: white;">
-    <div style="padding:5px;border:1px dashed #AAAAAA;margin-bottom:20px;">
-    <strong>###NOTE###</strong><br />
-    ###DESCRIPTION###
-    </div>
-    <div style="text-align:center;">
-     <!-- ###DOWNLOAD_LINK### -->###IMAGE### <!-- ###DOWNLOAD_LINK### --><br />
-    <!-- ###DOWNLOAD_LINK### -->###FILENAME###<!-- ###DOWNLOAD_LINK### -->
-    </div>
-</div>
+<!--  ###DETAIL_TEMPLATE### start
+				Available markers in this section:
+				###NOTE###
+				###DESCRIPTION###
+				###TITLE###
+				###IMAGE###
+				###FILENAME###
+			-->
+	<div style="padding:20px;background: white;">
+		<div style="padding:5px;border:1px dashed #AAAAAA;margin-bottom:20px;">
+		<strong>###NOTE###</strong><br />
+		###DESCRIPTION###
+		</div>
+		<div style="text-align:center;">
+		<!-- ###DOWNLOAD_LINK### -->###IMAGE### <!-- ###DOWNLOAD_LINK### --><br />
+		<!-- ###DOWNLOAD_LINK### -->###FILENAME###<!-- ###DOWNLOAD_LINK### -->
+		</div>
+	</div>
 <!--  ###DETAIL_TEMPLATE### end -->
 
 
@@ -287,43 +332,45 @@
 
 </div>
 
+
+
 <!-- ###FOLDER_FORM### end -->
 
 <!-- ###FILE_FORM### start -->
 
-<div style="clear:left;float:left;padding:20px;">
+	<div style="clear:left;float:left;padding:20px;">
 
-	<!-- ###FORM_WRAP### start -->
+		<!-- ###FORM_WRAP### start -->
 
-		<div>
-			###ERROR###
-		</div>
+			<div>
+				###ERROR###
+			</div>
 
-		<form method="post" action="###FORM_ACTIONURL###" enctype="multipart/form-data">
+			<form method="post" action="###FORM_ACTIONURL###" enctype="multipart/form-data">
 
-		<div>
-			<div class="fileexplorer_text fileexplorer_formLabel">###FILE###</div>
-			###INPUT_FILE###
-			<div class="fileexplorer_text fileexplorer_formLabel">###TITLE###</div>
-			<input class="fileexplorer_formInputText" type="text" name="tx_fileexplorer_pi1[form][title]" value="###INPUT_TITLE###"/>
-			<div class="fileexplorer_text fileexplorer_formLabel">###DESCRIPTION###</div>
-			<textarea class="fileexplorer_formInputTextarea" name="tx_fileexplorer_pi1[form][description]">###INPUT_DESCRIPTION###</textarea>
+			<div>
+				<div class="fileexplorer_text fileexplorer_formLabel">###FILE###</div>
+				###INPUT_FILE###
+				<div class="fileexplorer_text fileexplorer_formLabel">###TITLE###</div>
+				<input class="fileexplorer_formInputText" type="text" name="tx_fileexplorer_pi1[form][title]" value="###INPUT_TITLE###"/>
+				<div class="fileexplorer_text fileexplorer_formLabel">###DESCRIPTION###</div>
+				<textarea class="fileexplorer_formInputTextarea" name="tx_fileexplorer_pi1[form][description]">###INPUT_DESCRIPTION###</textarea>
 
-		</div>
-		<input class="fileexplorer_formSubmit" type="submit" name="tx_fileexplorer_pi1[form][submit]" onclick="this.value='###SUBMIT_ONCLICK_VALUE###'" value="###SUBMIT_VALUE###" />
-		###HIDDEN###
+			</div>
+			<input class="fileexplorer_formSubmit" type="submit" name="tx_fileexplorer_pi1[form][submit]" onclick="this.value='###SUBMIT_ONCLICK_VALUE###'" value="###SUBMIT_VALUE###" />
+			###HIDDEN###
 
-		</form>
+			</form>
 
-	<!-- ###FORM_WRAP### end -->
+		<!-- ###FORM_WRAP### end -->
 
-	<!-- ###NO_PERMISSIONS### start -->
+		<!-- ###NO_PERMISSIONS### start -->
 
-		###NO_PERMISSIONS_TEXT###
+			###NO_PERMISSIONS_TEXT###
 
-	<!-- ###NO_PERMISSIONS### end -->
+		<!-- ###NO_PERMISSIONS### end -->
 
-</div>
+	</div>
 
 <!-- ###FILE_FORM### end -->
 
@@ -337,30 +384,29 @@
 
 <!-- ###FILE_FORM_FLASH### start -->
 
+	###ERROR###
 
-###ERROR###
+	<script language="JavaScript">
+	// <!--
 
-<script language="JavaScript">
-// <!--
+	$('#flashUpload').flash(
+		{ src: '###FLASH_FILE###',
+		width: 370,
+		height: 240 },
+		{ version: 8 }
+	);
+	// -->
+	</script>
 
-$('#flashUpload').flash(
-    { src: '###FLASH_FILE###',
-      width: 370,
-      height: 240 },
-    { version: 8 }
-);
-// -->
-</script>
-
-<div style="padding:15px 0 0 10px;">
-	<div id="flashUpload"></div>
-</div>
+	<div style="padding:15px 0 0 10px;">
+		<div id="flashUpload"></div>
+	</div>
 
 <!-- ###FILE_FORM_FLASH### end -->
 
 
 <!-- ###NOT_PERMITTED### start -->
 
-Sie haben keine Schreibrechte
+		Sie haben keine Schreibrechte.
 
 <!-- ###NOT_PERMITTED### end -->
