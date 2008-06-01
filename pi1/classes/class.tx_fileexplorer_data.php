@@ -165,12 +165,12 @@ class tx_fileexplorer_data
     	$GLOBALS['TYPO3_DB']->sql_query($sql);
 		$newFolderPath = $this->base->conf['upload_folder'].$this->getFolderPath($this->base->_GP['id'],$this->base->conf['root_page']);
 		//strip slash
-			if (substr($origFolderPath,-1,1) === "/"){
-				$origFolderPath = substr($origFolderPath,0,-1);
-			}
-			if (substr($newFolderPath,-1,1) === "/"){
-				$newFolderPath = substr($newFolderPath,0,-1);
-			}
+		if (substr($origFolderPath,-1,1) === "/"){
+			$origFolderPath = substr($origFolderPath,0,-1);
+		}
+		if (substr($newFolderPath,-1,1) === "/"){
+			$newFolderPath = substr($newFolderPath,0,-1);
+		}
 
  		if (!rename($origFolderPath,$newFolderPath)) die($this->base->pi_getLL('error.renameFolderFs'));
 
@@ -204,7 +204,7 @@ class tx_fileexplorer_data
 
 	function storeFolderEntry($folderPid,$folderTitle,$userId,$readPerm,$writePerm)
 	{
-	        $insert = array('pid'					=> $folderPid,
+	     $insert = array('pid'					=> $folderPid,
 						'title'							=> $folderTitle,
 						'tstamp'						=> time(),
 						'crdate'						=> time(),
@@ -283,10 +283,15 @@ class tx_fileexplorer_data
 			if ($onFs){
 				$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
 				if (!empty($this->base->conf['trash_folder']) && $this->base->conf['move_to_trash']==1)
-					rename($filePath,$this->base->conf['trash_folder'].$file['file']);
+					if(!@rename($filePath,$this->base->conf['trash_folder'].$file['file'])){
+						die('error moving file: '.$filePath.' to trash folder: '.$this->base->conf['trash_folder']);
+					}
 				else
-					unlink($filePath);
+					if(!@unlink($filePath)){
+						die('error deleting file: '.$filePath);
+					}
 			}
+
 	    }
 	}
 
@@ -306,15 +311,15 @@ class tx_fileexplorer_data
 	        return false;
 	    }
 	    else{
+			$sql = "DELETE FROM `pages` WHERE uid = ".$id;
+            $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if($onFs){
 				//remove folder from fs
 				$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
 
-				if (!rmdir($this->base->conf['upload_folder'].$relPath))
+				if (!@rmdir($this->base->conf['upload_folder'].$relPath))
 					die('error deleting folder from fs: '.$this->base->conf['upload_folder'].$relPath);
 			}
-    	    $sql = "DELETE FROM `pages` WHERE uid = ".$id;
-            $GLOBALS['TYPO3_DB']->sql_query($sql);
             return true;
 	    }
 	}
