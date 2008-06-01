@@ -289,7 +289,7 @@ class tx_fileexplorer_view
 		    	$markerArray['###ITEM_ID###'] = 'feFile_'.$row['uid'];
 
 		        // get filesize
-		        $tmpFilesize = round(filesize($this->base->conf['upload_folder'].$this->getRelFolderPath($path).$row['file'])/1024);
+		        $tmpFilesize = round(@filesize($this->base->conf['upload_folder'].$this->getRelFolderPath($path).$row['file'])/1024);
 		        if($tmpFilesize > 1024){
 		            $markerArray['###FILE_SIZE###'] = round($tmpFilesize/1024, 1)." MB";
 		        }
@@ -423,7 +423,7 @@ class tx_fileexplorer_view
 
 	function getFolderSize($path){
 		if (!is_dir($path))
-			return filesize($path);
+			return @filesize($path);
 		$size=0;
 		foreach (scandir($path) as $file){
 			if ($file=='.' or $file=='..')

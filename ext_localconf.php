@@ -23,7 +23,7 @@ RTE.config.tx_fileexplorer_files.description {
 }
 ');
 
-  ## Extending TypoScript from static template uid=43 to set up userdefined tag:
+## Extending TypoScript from static template uid=43 to set up userdefined tag:
 t3lib_extMgm::addTypoScript($_EXTKEY,'editorcfg','
 	tt_content.CSS_editor.ch.tx_fileexplorer_pi1 = < plugin.tx_fileexplorer_pi1.CSS_editor
 ',43);

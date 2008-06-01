@@ -45,7 +45,7 @@ class tx_fileexplorer_pi1 extends tslib_pibase
         $this->conf = $conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
-		$this->pi_USER_INT_obj = 0;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
+// 		$this->pi_USER_INT_obj = 1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
 
 		$this->_GP = t3lib_div::GPvar($this->prefixId);
 		//!TODO: Secure and avoid possible mysql injections
@@ -80,25 +80,27 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 	    		}
 			}
 
+
+			$templateCode = $this->cObj->fileResource($this->conf['templateFile']);
+			$key = 'EXT:file_explorer_js_css' . md5($templateCode);
+			if (!isset($GLOBALS['TSFE']->additionalHeaderData[$key])) {
+				$headerParts = $this->cObj->getSubpart($templateCode, '###HEADER_ADDITIONS###');
+				if ($headerParts) {
+					$headerParts = $this->cObj->substituteMarker($headerParts, '###SITE_REL_PATH###', t3lib_extMgm::siteRelPath($this->extKey));
+ 					$GLOBALS['TSFE']->additionalHeaderData[$key] = $headerParts;
+				}
+			}
+
 			$cObj = t3lib_div::makeInstance("tslib_cObj");
 			$contextmenuJS = $cObj->fileResource(t3lib_extMgm::siteRelPath($this->extKey).'/js/functions.js');
 			$arrayMarkers = array('folderDelConfirm','fileDelConfirm');
 				foreach ($arrayMarkers as $marker) {
 				$markerArray['###'.strtoupper($marker).'###'] = $this->pi_getLL('js.'.$marker);
 			}
-
-			$GLOBALS['TSFE']->additionalHeaderData['tx_jquerythickbox_inc'] .= t3lib_div::wrapJS($cObj->substituteMarkerArrayCached($contextmenuJS,$markerArray));
-
-			$templateCode = $this->cObj->fileResource($this->conf['templateFile']);
-			$key = 'EXT:file_explorer_' . md5($templateCode);
+			$key = 'EXT:file_explorer_contextmenu' . md5($templateCode);
 			if (!isset($GLOBALS['TSFE']->additionalHeaderData[$key])) {
-				$headerParts = $this->cObj->getSubpart($templateCode, '###HEADER_ADDITIONS###');
-				if ($headerParts) {
-					$headerParts = $this->cObj->substituteMarker($headerParts, '###SITE_REL_PATH###', t3lib_extMgm::siteRelPath($this->extKey));
-					$GLOBALS['TSFE']->additionalHeaderData[$key] = $headerParts;
-				}
+				$GLOBALS['TSFE']->additionalHeaderData[$key] = t3lib_div::wrapJS($cObj->substituteMarkerArrayCached($contextmenuJS,$markerArray));
 			}
-
 		}
 		else
 		{
