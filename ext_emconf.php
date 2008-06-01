@@ -14,10 +14,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'title' => 'File Explorer',
 	'description' => 'The File Explorer is a frontend and backend filemanagement extension.
 		This extension contains read and write permissions for secure filemanagement.
-		The frontend usability will be increased by a modern GUI and a multiple-file upload via flash.',
+		The frontend usability is increased by a modern GUI and a multiple-file upload via flash.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '2.0.1',
+	'version' => '2.0.3',
 	'dependencies' => 'cms,jquery_thickbox',
 	'conflicts' => '',
 	'priority' => '',
@@ -37,7 +37,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
-			'jquery_thickbox' => '',
+			'jquery_thickbox' => '2.1.0',
 		),
 		'conflicts' => array(
 		),
