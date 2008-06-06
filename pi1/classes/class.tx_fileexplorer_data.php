@@ -257,7 +257,7 @@ class tx_fileexplorer_data
 
 	    $out['writePermission'] = 0;
 
-		// check root user
+		//check root user
 		$arrUserGroups = explode(',', $GLOBALS['TSFE']->fe_user->user['usegroup']);
 		$rootGroups = explode(',', $this->base->conf['root_fe_user_groups']);
         foreach ($rootGroups AS $rootGroup){
@@ -507,7 +507,6 @@ class tx_fileexplorer_data
 
 	function getCurrentFolder($folder_id)
 	{
-		//!TODO: Do we really need to fetch all the fields from the huge pages table? Whats actually needed? - set to uid and pid
 	    $sql = "SELECT uid,pid,title FROM `pages`
 	            WHERE uid = ".$folder_id;
 	    $res = $GLOBALS['TYPO3_DB'] ->sql_query($sql);
@@ -584,7 +583,6 @@ class tx_fileexplorer_data
 	        return $out;
 	    }
 
-		//!TODO: Reduce fields
 	    $sql = "SELECT uid,pid,tx_fileexplorer_readPublic,tx_fileexplorer_feCrUserId,tx_fileexplorer_read,tx_fileexplorer_write FROM `pages` WHERE `uid` = ".$pageUid;
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
         $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);

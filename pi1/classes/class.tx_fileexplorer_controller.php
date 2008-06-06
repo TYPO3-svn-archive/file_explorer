@@ -50,10 +50,9 @@ class tx_fileexplorer_controller
 	{
 	    $out = '';
 
-// 		print_r($this->base->_GP);
 	    if( !empty($this->base->_GP['action']) )
 	    {
-	    	// FORM DISPLAY
+	    	//FORM DISPLAY
 			$newClass = t3lib_div::makeInstanceClassName('tx_fileexplorer_form');
 			$form = new $newClass($this->base);
 
@@ -81,7 +80,7 @@ class tx_fileexplorer_controller
 	    }
 	    else
 	    {
-	    	// GENERAL DISPLAY
+	    	//GENERAL DISPLAY
 			$newClass = t3lib_div::makeInstanceClassName('tx_fileexplorer_view');
 			$view = new $newClass($this->base);
 	        if( $this->base->_GP['view'] == 'detail' )

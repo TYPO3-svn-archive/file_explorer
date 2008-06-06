@@ -226,8 +226,7 @@ class tx_fileexplorer_view
 	    $result = '';
 		$template = $this->cObj->getSubpart($templateCode, $part);
 
-
-		// get backfolder [..]
+		// get backfolder
 	    if($currentFolder['isRoot'] != 1){
             $template_back      = $this->cObj->getSubpart($template, '###BACK_FOLDER###');
             $thumb['file']      = 'typo3conf/ext/'.$this->base->extKey.'/icons/mimetypes/'.$this->iconSize.'/dialog-ok.png';
@@ -409,15 +408,6 @@ class tx_fileexplorer_view
         	$wrappedSubpartArray['###LINK_CREATE_FILE_FLASH_WRAP###'] = array('<a href="'.$link['create_file_flash'].'" class="thickbox" title="'.$this->base->pi_getLL('link.create_file_flash').'">','</a>');
 			$markerArray['###LINK_CREATE_FILE_FLASH_TEXT###']=$this->base->pi_getLL('link.create_file_flash');
         }
-
-        /*
-        if($currentFolder['isRoot'] == 1)
-        {
-        	$markerArray['###LINK_CREATE_FOLDER###']     = '<span class="file_explorer_no_perm">'.$this->base->pi_getLL('link.create_folder').'</span>';
-            $markerArray['###LINK_CREATE_FILE###']       = '<span class="file_explorer_no_perm">'.$this->base->pi_getLL('link.create_file').'</span>';
-            $markerArray['###LINK_CREATE_FILE_FLASH###'] = '<span class="file_explorer_no_perm">'.$this->base->pi_getLL('link.create_file_flash').'</span>';
-        }
-*/
 
         if($this->view == 'review')
         {
