@@ -1,47 +1,27 @@
 <?php
-/*
-$_FILES = array
-(
-    'Filedata' => Array
-        (
-            'name' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-            'type' => 'application/octet-stream',
-            'tmp_name' => '/tmp/phpVAh3rz',
-            'error' => '0',
-            'size' => '4781'
-        )
-);
-$_GET =
-Array
-(
-    'eID' => 'tx_fileexplorer_pi1',
-    'fe_typo_user' => $_COOKIE['fe_typo_user'],
-    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
-    'action' => 'create_file_flash',
-    'folder' => '76',
-);
-$_POST =
-Array
-(
-    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-    'Upload' => 'Submit Query',
-);
-$_REQUEST =
-Array
-(
-    'eID' => 'tx_fileexplorer_pi1',
-    'fe_typo_user' => $_COOKIE['fe_typo_user'],
-    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
-    'action' => 'create_file_flash',
-    'folder' => '76',
-    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-    'Upload' => 'Submit Query',
-);
-*/
-
-// simulate flash
-
-
+/***************************************************************
+*  Copyright notice
+*
+*  (c) 2006 Henning Borchers <hb@triquart.de>
+*  (c) 2008 Cyrill Helg <typo3 (ät) phlogi (dot) net>
+*  All rights reserved
+*
+*  This script is part of the TYPO3 project. The TYPO3 project is
+*  free software; you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation; either version 2 of the License, or
+*  (at your option) any later version.
+*
+*  The GNU General Public License can be found at
+*  http://www.gnu.org/copyleft/gpl.html.
+*
+*  This script is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  This copyright notice MUST APPEAR in all copies of the script!
+***************************************************************/
 
 // ignore first init (flash upload opens this script two times!)
 if( ($_FILES['upload']) && ( $_GET['action']=='create_file_flash' || $_POST['action']=='create_file_flash' ) )
@@ -165,5 +145,47 @@ class tx_fileexplorer_eIDinit
 $eIDinit = t3lib_div::makeInstance('tx_fileexplorer_eIDinit');
 
 echo $eIDinit->main();
+
+/*
+$_FILES = array
+(
+    'Filedata' => Array
+        (
+            'name' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
+            'type' => 'application/octet-stream',
+            'tmp_name' => '/tmp/phpVAh3rz',
+            'error' => '0',
+            'size' => '4781'
+        )
+);
+$_GET =
+Array
+(
+    'eID' => 'tx_fileexplorer_pi1',
+    'fe_typo_user' => $_COOKIE['fe_typo_user'],
+    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
+    'action' => 'create_file_flash',
+    'folder' => '76',
+);
+$_POST =
+Array
+(
+    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
+    'Upload' => 'Submit Query',
+);
+$_REQUEST =
+Array
+(
+    'eID' => 'tx_fileexplorer_pi1',
+    'fe_typo_user' => $_COOKIE['fe_typo_user'],
+    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
+    'action' => 'create_file_flash',
+    'folder' => '76',
+    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
+    'Upload' => 'Submit Query',
+);
+*/
+
+// simulate flash
 
 ?>

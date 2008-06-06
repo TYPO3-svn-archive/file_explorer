@@ -2,7 +2,8 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2006 henning Borchers <hb@triquart.de>
+*  (c) 2006 Henning Borchers <hb@triquart.de>
+*  (c) 2008 Cyrill Helg <typo3 (ät) phlogi (dot) net>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
