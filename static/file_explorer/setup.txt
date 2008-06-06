@@ -75,7 +75,6 @@ plugin.tx_fileexplorer_pi1 {
 	}
 
 
-	// not for the flash upload
 	files {
 		ignoreAllowed = 1
 		allowedTypes = pdf,gif,jpg,jpeg,png,txt
