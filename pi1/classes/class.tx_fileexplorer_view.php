@@ -424,11 +424,22 @@ class tx_fileexplorer_view
 	function getFolderSize($path){
 		if (!is_dir($path))
 			return @filesize($path);
-		$size=0;
-		foreach (scandir($path) as $file){
-			if ($file=='.' or $file=='..')
+		if (function_exists('scandir')){
+		  $size=0;
+		  foreach (scandir($path) as $file){
+			  if ($file=='.' or $file=='..')
+				  continue;
+		  $size+=$this->getFolderSize($path.'/'.$file);
+		  }
+		}
+		else{
+		  //klu Alternative zu scandir()
+		  $dh = opendir($path);
+		  while (false !== ($file = readdir($dh))) {
+			 if ($file=='.' or $file=='..')
 				continue;
-		$size+=$this->getFolderSize($path.'/'.$file);
+				$size+=$this->getFolderSize($path.'/'.$file);
+		  }
 		}
 		return $size;
 	}
