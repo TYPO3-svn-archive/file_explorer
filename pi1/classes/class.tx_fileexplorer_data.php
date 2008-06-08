@@ -335,11 +335,11 @@ class tx_fileexplorer_data
 	        return false;
 	    }
 	    else{
+			$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
 			$sql = "DELETE FROM `pages` WHERE uid = ".$id;
             $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if($onFs){
 				//remove folder from fs
-				$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
 
 				if (!@rmdir($this->base->conf['upload_folder'].$relPath))
 					die('error deleting folder from fs: '.$this->base->conf['upload_folder'].$relPath);
