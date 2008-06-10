@@ -157,7 +157,7 @@ class tx_fileexplorer_form
 	                           '[popup]'   => $this->base->_GP['popup'] );
         $out['markerArray']['###ERROR###']             = $error_msg;
         $out['markerArray']['###HIDDEN###']            = $this->getHiddenFields($hiddenFields);
-		$out['markerArray']['###FORM_ACTIONURL###'] = $_SERVER['REQUEST_URI'];
+		$out['markerArray']['###FORM_ACTIONURL###'] = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
 
 		$out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
 		$out['markerArray']['###SUBMIT_ONCLICK_VALUE###'] = $this->base->pi_getLL('form.submitDisabled');
@@ -199,7 +199,7 @@ class tx_fileexplorer_form
         $sql = "SELECT * FROM `fe_groups` WHERE uid IN (".$this->base->conf['valid_fe_user_groups'].")";
 
         $res = $GLOBALS['TYPO3_DB'] ->sql_query($sql);
-        while( false != ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
+        while( false != ($row = @$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
 		    $add = '';
 		    if( @in_array($row['uid'], $this->base->_GP['form'][$name]) ){
 		        $add = ' selected="selected" ';
@@ -227,7 +227,7 @@ class tx_fileexplorer_form
 
 	    $out['markerArray']['###ERROR###'] = $error_msg;
         $out['markerArray']['###HIDDEN###'] = $this->getHiddenFields($hiddenFields);
-        $out['markerArray']['###FORM_ACTIONURL###'] = $_SERVER['REQUEST_URI'];
+        $out['markerArray']['###FORM_ACTIONURL###'] = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
         $out['markerArray']['###INPUT_TITLE###'] = '<input class="fileexplorer_formInputText" type="text" name="'.$this->base->prefixId.'[form][title]" value="'.$this->base->_GP['form']['title'].'" />';
 
         $out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
