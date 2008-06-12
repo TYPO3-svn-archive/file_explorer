@@ -108,5 +108,58 @@
 
         <label index="error.field_validation">Sie haben nicht alle Felder ausgefuellt: </label>
     </languageKey>
+	<languageKey index="fr" type="array">
+        <label index="link.back">..</label>
+		<label index="link.back.desc">Dossier parent</label>
+        <label index="link.create_folder">Nouveau dossier</label>
+        <label index="link.create_file">Nouveau fichier [html]</label>
+        <label index="link.create_file_flash">Nouveau fichier [Flash]</label>
+        <label index="link.edit_folder">[Éditer]</label>
+        <label index="link.edit_file">[Éditer]</label>
+        <label index="link.delete_file">[X]</label>
+        <label index="form.submit">Enregistrer</label>
+        <label index="form.title">Titre:</label>
+        <label index="form.file">Fichier:</label>
+        <label index="form.description">Description:</label>
+        <label index="form.permRead">Lecture</label>
+		<label index="form.permWrite">Écriture</label>
+        <label index="form.uploadedFileTitle">Fichier:</label>
+		<label index="form.noPerm">Vous n'avez pas la permission d'écrire dans ce dossier!</label>
+        <label index="form.success">Action accomplie avec succès.</label>
+        <label index="form.submitDisabled">Patientez...</label>
+        <label index="detail.no_description">- Vide -</label>
+		<label index="detail.note">Description: </label>
+        <label index="change_view.review">Miniature</label>
+        <label index="change_view.list">Liste</label>
+        <label index="note.no_permissions">(Vous n'avez pas les droits nécessaire)</label>
+        <label index="note.delete_file">Voulez-vous supprimer ce fichier: </label>
+        <label index="note.delete_folder">Voulez-vous supprimer ce dossier: </label>
+		<label index="contextMenu.edit">Étiter</label>
+		<label index="contextMenu.delete">Supprimer</label>
+		<label index="contextMenu.view">Voir</label>
+		<label index="contextMenu.download">Télécharger</label>
+		<label index="contextMenu.browse">Parcourir</label>
+		<label index="list.createDate">Date de création</label>
+		<label index="list.author">Propriétaire</label>
+		<label index="list.size">Taille</label>
+		<label index="js.folderDelConfirm">Êtes-vous sûr de vouloir supprimer ce dossier?\n\"</label>
+		<label index="js.fileDelConfirm">Êtes-vous sûr de vouloir supprimer ce fichier?\n\"</label>
+		<label index="extract.descriptionFile">Fichier extrait de </label>
+
+
+		<label index="error.fileTooBig">Le fichier est trop gros, le maximum est: </label>
+		<label index="error.noFile">Fichier introuvable.</label>
+		<label index="error.wrongFileType">Erreur, type de fichier non autorisé: </label>
+		<label index="error.uploadFatalInternal">Une erreur interne est survenue lors de l'envoi du fichier.</label>
+		<label index="error.wrongFileType">Erreur, type de fichier non autorisé: </label>
+		<label index="error.folderExisting">Le dossier existe déjà.</label>
+		<label index="error.renameFolderFs">Erreur de renommage du dossier.</label>
+		<label index="error.findingPath">Chemin introuvable.  Erreur fatale.</label>
+		<label index="error.recursiveDelete">Achtung:\ndieser Ordner konnte nicht geloescht werden, da er Unterelemente enthaelt.</label>
+
+
+
+        <label index="error.field_validation">Vous n'avez pas remplis tous les champs: </label>
+    </languageKey>
 </data>
 </T3locallang>
