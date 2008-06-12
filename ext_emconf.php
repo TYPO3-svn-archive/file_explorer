@@ -17,7 +17,7 @@ $EM_CONF[$_EXTKEY] = array(
 		The frontend usability is increased by a modern GUI and a multiple-file upload via flash.',
 	'category' => 'plugin',
 	'shy' => 0,
-	'version' => '2.0.3',
+	'version' => '2.0.6',
 	'dependencies' => 'cms,jquery_thickbox',
 	'conflicts' => '',
 	'priority' => '',
@@ -37,7 +37,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
-			'jquery_thickbox' => '2.1.0',
+			'jquery_thickbox' => '2.1.1',
 		),
 		'conflicts' => array(
 		),
