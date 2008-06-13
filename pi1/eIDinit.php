@@ -35,6 +35,23 @@ tslib_eidtools::connectDB();
 
 require_once(t3lib_extMgm::extPath('file_explorer')."pi1/classes/class.tx_fileexplorer_data.php");
 
+	/* Fake class LL support, source: http://bugs.typo3.org/print_bug_page.php?bug_id=5231*/
+	class csConvObj {
+	    function parse_charset() {
+	        return 'utf-8';
+	    }
+	    function utf8_decode($l,$c) {
+	        return $l;
+	    }
+	}
+	$TSFE = new stdClass;
+	$TSFE->csConvObj = new csConvObj;
+
+	//$LOCAL_LANG = t3lib_div::readLLfile('EXT:fefilebrowser/pi1/locallang.xml','de');
+
+
+
+
 /**
  * Simple function to replicate PHP5 behaviour
  */
@@ -70,13 +87,18 @@ class tx_fileexplorer_eIDinit
 
 		if( empty($this->conf['fe_user']['uid']) )
 			die('fatal error: not logged in?');
+
+		//language stuff
+		$this->lang = t3lib_div::_GET('lang');
+		if($this->lang == '') $this->lang = 'default';
+
 	}
 
     function main()
     {
 		$newClass = t3lib_div::makeInstanceClassName('tx_fileexplorer_data');
 		$handleData = new $newClass($this);
-
+		$LOCAL_LANG = t3lib_div::readLLfile('EXT:file_explorer/pi1/locallang.xml',$this->lang);
         switch ($this->_GP['action'])
         {
             case 'create_file_flash':
@@ -90,7 +112,7 @@ class tx_fileexplorer_eIDinit
             case 'delete_folder':
                 if($handleData->deleteFolder($this->_GP['id']) === false)
                 {
-                	return "Achtung:\ndieser Ordner konnte nicht geloescht werden, da er Unterelemente enthaelt.";
+                	return $LOCAL_LANG[$this->lang]['error.recursiveDelete'];
                 }
                 break;
             case 'download_file':
