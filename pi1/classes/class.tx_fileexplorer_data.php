@@ -301,11 +301,11 @@ class tx_fileexplorer_data
 			$file = $this->getFile( $file_uid );
 
 	    if( count($file) > 0 || $admin){
+			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
     	    $sql = "DELETE FROM `tx_fileexplorer_files` WHERE uid = ".$file_uid;
     	    $GLOBALS['TYPO3_DB']->sql_query($sql);
 
 			if ($onFs){
-				$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
 				if (!empty($this->base->conf['trash_folder']) && $this->base->conf['move_to_trash']==1)
 					if(!@rename($filePath,$this->base->conf['trash_folder'].$file['file'])){
 						die('error moving file: '.$filePath.' to trash folder: '.$this->base->conf['trash_folder']);
