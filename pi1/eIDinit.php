@@ -70,7 +70,7 @@ class tx_fileexplorer_eIDinit
 
 	function tx_fileexplorer_eIDinit()
 	{
-	    $this->_GP = $_GET;
+	    $this->_GP = t3lib_div::_GET();
 		//!TODO: Secure and avoid possible mysql injections
 		$this->_GP['id'] = intval($this->_GP['id']);
 		$this->_GP['folder'] = intval($this->_GP['folder']);
@@ -159,7 +159,6 @@ class tx_fileexplorer_eIDinit
         file_put_contents ( PATH_site."typo3conf/ext/file_explorer/pi1/log/".date('Y-m-d_H_i_s',time())."_".microtime_float()."_request.log",
         $content
         );
-
         //echo $content;
     }
 }

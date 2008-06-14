@@ -157,7 +157,7 @@ class tx_fileexplorer_form
 	                           '[popup]'   => $this->base->_GP['popup'] );
         $out['markerArray']['###ERROR###']             = $error_msg;
         $out['markerArray']['###HIDDEN###']            = $this->getHiddenFields($hiddenFields);
-		$out['markerArray']['###FORM_ACTIONURL###'] = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+		$out['markerArray']['###FORM_ACTIONURL###'] = htmlspecialchars(t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
 
 		$out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
 		$out['markerArray']['###SUBMIT_ONCLICK_VALUE###'] = $this->base->pi_getLL('form.submitDisabled');
@@ -227,7 +227,7 @@ class tx_fileexplorer_form
 
 	    $out['markerArray']['###ERROR###'] = $error_msg;
         $out['markerArray']['###HIDDEN###'] = $this->getHiddenFields($hiddenFields);
-        $out['markerArray']['###FORM_ACTIONURL###'] = t3lib_div::getIndpEnv('TYPO3_REQUEST_URL');
+        $out['markerArray']['###FORM_ACTIONURL###'] = htmlspecialchars(t3lib_div::getIndpEnv('TYPO3_REQUEST_URL'));
         $out['markerArray']['###INPUT_TITLE###'] = '<input class="fileexplorer_formInputText" type="text" name="'.$this->base->prefixId.'[form][title]" value="'.$this->base->_GP['form']['title'].'" />';
 
         $out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
