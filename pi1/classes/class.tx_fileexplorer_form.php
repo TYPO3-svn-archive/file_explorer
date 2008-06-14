@@ -195,18 +195,16 @@ class tx_fileexplorer_form
 
     function getCheckBoxes($name)
     {
-        $out = '<select class="fileexplorer_formSelect" name="'.$this->base->prefixId.'[form]['.$name.'][]" size="5" multiple="multiple">';
-        $sql = "SELECT * FROM `fe_groups` WHERE uid IN (".$this->base->conf['valid_fe_user_groups'].")";
+        $sql = "SELECT uid,title FROM `fe_groups` WHERE uid IN (".$this->base->conf['valid_fe_user_groups'].")";
 
         $res = $GLOBALS['TYPO3_DB'] ->sql_query($sql);
         while( false != ($row = @$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
 		    $add = '';
 		    if( @in_array($row['uid'], $this->base->_GP['form'][$name]) ){
-		        $add = ' selected="selected" ';
+		        $add = ' checked="checked" ';
 		    }
-             $out .= '<option value="'.$row['uid'].'" '.$add.' >'.$row['title'].'</option>';
+             $out .= '<div><input type="checkbox" name="'.$this->base->prefixId.'[form]['.$name.'][]" value="'.$row['uid'].'" '.$add.' />'.$row['title'].'</div>';
 	    }
-	    $out .= '</select>';
         return $out;
     }
 

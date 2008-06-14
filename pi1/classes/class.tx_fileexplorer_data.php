@@ -140,7 +140,6 @@ class tx_fileexplorer_data
     function insertGroupRelations($relType, $pageUid, $arrGroupUid = array() )
     {
         $add = ( count($arrGroupUid) > 0 ) ? implode(',', $arrGroupUid) : 0;
-
         $sql = "UPDATE `pages` SET `tx_fileexplorer_".$relType."` = '".$add."'
                 WHERE uid = ".$pageUid;
 
