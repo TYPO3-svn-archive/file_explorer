@@ -52,6 +52,10 @@ class tx_fileexplorer_controller
 
 	    if( !empty($this->base->_GP['action']) )
 	    {
+			//check if we have a logged in user
+			if( ! $GLOBALS['TSFE']->fe_user->user ) {
+					return $this->base->pi_getLL('error.noAccess');
+			}
 	    	//FORM DISPLAY
 			$newClass = t3lib_div::makeInstanceClassName('tx_fileexplorer_form');
 			$form = new $newClass($this->base);

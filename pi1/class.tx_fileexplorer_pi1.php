@@ -48,6 +48,7 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 		$this->pi_loadLL();
 // 		$this->pi_USER_INT_obj = 1;	// Configuring so caching is not expected. This value means that no cHash params are ever set. We do this, because it's a USER_INT object!
 
+
 		$this->_GP = t3lib_div::GPvar($this->prefixId);
 		//!TODO: Secure and avoid possible mysql injections
 		$this->_GP['id'] = intval($this->_GP['id']);
