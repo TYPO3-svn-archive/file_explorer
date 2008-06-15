@@ -299,7 +299,7 @@ class tx_fileexplorer_view
 		        $wrappedSubpartArray['###LINK_WRAP###'] = array('<a href="'.$link['folder'].'" >','</a>');
 
                 $markerArray['###FILENAME###']      = $folderName;
-                $markerArray['###TITLE###']         = '';
+//                 $markerArray['###TITLE###']         = '';
                 $markerArray['###ITEM_ID###']       = 'feFolder_'.$row['uid'];
 
 		        //$wrappedSubpartArray['###THUMB_LINK###'] = array('<a href="'.$link['folder'].'">','</a>');
