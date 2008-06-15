@@ -143,7 +143,7 @@ class tx_fileexplorer_upload
 			for($i=0; $i <= (2-strlen($number)); $i++){
 				$number = '0'.$number;
 			}
-			$file = $number.substr($file, 3);
+			$file = $number.substr($file, 2);
 		}
 		return	$file;
 	}
