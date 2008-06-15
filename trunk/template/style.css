@@ -1,0 +1,110 @@
+.fileexplorer_text,
+.fileexplorer_formInputText,
+.fileexplorer_formInputText_disabled,
+.fileexplorer_formSelect,
+.fileexplorer_formSubmit {
+	font-size          : 10px;
+    font-family        : arial, sans-serif;
+    color              : #000000;
+}
+
+
+.fileexplorer_allWrap,
+.fileexplorer_allWrap a,
+.fileexplorer_allWrap td,
+.fileexplorer_allWrap div,
+.fileexplorer_allWrap span {
+	font-size          : 12px;
+    font-family        : arial, sans-serif;
+    color              : #000000;
+}
+
+.fileexplorer_allWrap a img {
+	border-width:0px;	
+}
+
+.fileexplorer_formInputText {
+	border:1px solid #7f9db9;
+	width:250px;
+}
+.fileexplorer_formInputText_disabled {
+	border:1px solid #7f9db9;
+	width:248px;
+	padding:1px;
+	background-color:#EEEEEE;
+}
+.fileexplorer_formInputTextarea {
+	border:1px solid #7f9db9;
+	width:250px;
+	height:150px;
+}
+.fileexplorer_formSelect {
+	border:1px solid #7f9db9;
+	height:160px;
+	width:120px;
+	overflow:hidden;
+}
+.fileexplorer_formSubmit {
+	margin-top:10px;
+	/*border:1px solid #7f9db9;*/
+}
+.fileexplorer_text .fileexplorer_formLabel {
+	display:block;
+	margin:2px 0px 2px 0px;
+}
+.fileexplorer_allWrap .fileexplorer_thumbIcon {
+    display:inline;
+    border-width:0px;
+    cursor:pointer;
+}
+.fileexplorer_allWrap .fileexplorer_folderIcon {
+    display:inline;
+    border-width:0px;
+    cursor:pointer;
+}
+.fileexplorer_allWrap .fileexplorer_thumbImage {
+    display:inline;
+    border:1px solid #666;
+    cursor:pointer;
+}
+.fileexplorer_allWrap .fileexplorer_pathNavigation {
+	color:#000;
+	text-decoration:none;
+}
+.fileexplorer_allWrap .fileexplorer_pathNavigationWrap {
+	float:left;
+	margin-top:-2px;
+}
+
+.fileexplorer_windowHeader {
+	display:block;
+	padding:6px;
+	background-image   : url(images/fhbg.gif);
+	background-repeat  : repeat-x;
+}
+.fileexplorer_windowContent {
+	display:block;
+	padding:10px;
+	background-color:white;
+}
+
+.fileexplorer_windowWrap {
+	border:1px solid #ccc;
+}
+.fileexplorer_changeViewWrap {
+	float:left;
+	width:25px;
+}
+
+.fileexplorer_listTable {
+	clear:left;
+	border-collapse:collapse;
+	width:100%;
+}
+
+.rowMouseOver   { background-color: #FAFAFA; }
+.rowMouseOut    { background-color: #FFFFFF; }
+.file_explorer_table { border-width:0px; }
+.file_explorer_table tr td { margin:0px; }
+.fileexplorer_allWrap .file_explorer_no_perm { color:#AAAAAA; }
+.fileexplorer_allWrap div.contextMenu {display:none;}

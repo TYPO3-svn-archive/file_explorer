@@ -1,0 +1,415 @@
+
+<!-- ###HEADER_ADDITIONS### begin
+			This section will be appended to html headers of the output. Allows you to include CSS, JS, etc
+			Markers in this section:
+				SITE_REL_PATH	- path to file relative to web root, ending with slash
+	-->
+	<link rel="stylesheet" type="text/css" href="###SITE_REL_PATH###template/style.css" />
+	<link rel="stylesheet" type="text/css" href="###SITE_REL_PATH###template/flexigrid.css" />
+
+
+	<script type="text/javascript" src="###SITE_REL_PATH###js/flash_detection.js"></script>
+	<script type="text/javascript" src="###SITE_REL_PATH###js/flexigrid.pack.js"></script>
+	<script type="text/javascript" src="###SITE_REL_PATH###js/contextmenu.js"></script>
+
+<!-- ###HEADER_ADDITIONS### end -->
+
+
+
+<!--  ###LIST_TEMPLATE### start
+	Available markers in this section:
+				###LINK_CREATE_FOLDER_TEXT###
+				###LINK_CREATE_FILE_TEXT###
+				###LINK_CREATE_FILE_FLASH_TEXT###
+
+	            ###CHANGE_VIEW###
+            	###NAVIGATION_PATH###
+            	###CREATE_DATE###
+            	###SIZE###
+				###AUTHOR###
+
+				###ICON###
+				###FILENAME###
+				###DATE_CREATE###
+	        	###FILE_SIZE###
+	        	###AUTHOR###
+
+-->
+
+    <!--  ###HEADER### start -->
+
+    <script type="text/javascript">
+	$(document).ready(function() {
+			$('.flexme1').flexigrid({height: "auto"});
+	});
+	</script>
+
+    <div style="display:block;padding-bottom:10px;">
+	    <!--###LINK_CREATE_FOLDER_WRAP###-->
+			<img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/folder-new.png" alt="folder" />
+		<!--###LINK_CREATE_FOLDER_WRAP###-->
+	    <div style="float:left;padding:4px 30px 0 5px;">
+			<!--###LINK_CREATE_FOLDER_WRAP###-->
+				###LINK_CREATE_FOLDER_TEXT###
+			<!--###LINK_CREATE_FOLDER_WRAP###-->
+		</div>
+			<!--###LINK_CREATE_FILE_WRAP###-->
+	    <img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/document-new.png" alt="folder" />
+			<!--###LINK_CREATE_FILE_WRAP###-->
+	    <div style="float:left;padding:4px 30px 0 5px;">
+			<!--###LINK_CREATE_FILE_WRAP###-->
+				###LINK_CREATE_FILE_TEXT###
+			<!--###LINK_CREATE_FILE_WRAP###-->
+		</div>
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+	    	<img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/document-new.png" alt="folder" />
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+	    <div style="float:left;padding:4px 0px 0 5px;">
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+			###LINK_CREATE_FILE_FLASH_TEXT###
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+		</div>
+    	<br style="clear:both;" />
+    </div>
+
+
+    <table class="flexme1">
+	<thead>
+    		<tr>
+            	<th width="25">###CHANGE_VIEW###</th>
+            	<th width="195">###NAVIGATION_PATH###</th>
+            	<th width="100">###CREATE_DATE###</th>
+            	<th width="50">###SIZE###</th>
+				<th width="100">###AUTHOR###</th>
+            </tr>
+    </thead>
+
+    <!--  ###HEADER### end -->
+
+	<tbody>
+
+    <!--  ###FILELIST### start -->
+
+
+        <!--  ###BACK_FOLDER### start -->
+        <tr>
+	        <td><!--###LINK_WRAP###-->###ICON###<!--###LINK_WRAP###--></td>
+	        <td><!--###LINK_WRAP###-->[###FILENAME###]<!--###LINK_WRAP###--></td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+        </tr>
+        <!--  ###BACK_FOLDER### start -->
+
+        <!--  ###ITEM### start -->
+		<tr id="###ITEM_ID###">
+	        <td>###ICON###</td>
+	        <td><!--###LINK_WRAP###-->[###FILENAME###]<!--###LINK_WRAP###--></td>
+	        <td>###DATE_CREATE###</td>
+	        <td>###FILE_SIZE###</td>
+	        <td>###AUTHOR###</td>
+        </tr>
+        <!--  ###ITEM### end -->
+
+    <!--  ###FILELIST### end -->
+
+	<tbody>
+    </table>
+
+	<!-- stuff for the javascript menu START-->
+
+    <br style="clear:both;" />
+
+    <div class="contextMenu" id="cMenu_folder">
+    <ul>
+	    <li id="editFolder">###EDIT_ICON### ###EDIT_TEXT###</li>
+	    <li id="saveFolder">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="deleteFolder">###DELETE_ICON### ###DELETE_TEXT###</li>
+		<li id="browseFolder">###BROWSE_ICON### ###BROWSE_TEXT###</li>
+	</ul>
+	</div>
+
+	<div class="contextMenu" id="cMenu_file">
+    <ul>
+	    <li id="editFile">###EDIT_ICON### ###EDIT_TEXT###</li>
+	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
+	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
+	<!-- 	    <li id="cut">###CUT_ICON### ###CUT_TEXT###</li>			 -->
+	</ul>
+	</div>
+
+	<!-- stuff for the javascript menu END -->
+
+<!--  ###LIST_TEMPLATE### end -->
+
+
+
+<!--  ###REVIEW_TEMPLATE### start
+				Available markers in this section:
+				###LINK_CREATE_FOLDER_TEXT###
+				###LINK_CREATE_FILE_TEXT###
+				###LINK_CREATE_FILE_FLASH_TEXT###
+
+	            ###CHANGE_VIEW###
+            	###NAVIGATION_PATH###
+            	###CREATE_DATE###
+            	###SIZE###
+				###AUTHOR###
+
+				###ICON###
+				###FILENAME###
+				###DATE_CREATE###
+	        	###FILE_SIZE###
+	        	###AUTHOR###
+			-->
+
+    <!--  ###HEADER### start -->
+    <div style="display:block;padding-bottom:10px;">
+	    <!--###LINK_CREATE_FOLDER_WRAP###-->
+			<img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/folder-new.png" alt="folder" />
+		<!--###LINK_CREATE_FOLDER_WRAP###-->
+	    <div style="float:left;padding:4px 30px 0 5px;">
+			<!--###LINK_CREATE_FOLDER_WRAP###-->
+				###LINK_CREATE_FOLDER_TEXT###
+			<!--###LINK_CREATE_FOLDER_WRAP###-->
+		</div>
+			<!--###LINK_CREATE_FILE_WRAP###-->
+	    <img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/document-new.png" alt="folder" />
+			<!--###LINK_CREATE_FILE_WRAP###-->
+	    <div style="float:left;padding:4px 30px 0 5px;">
+			<!--###LINK_CREATE_FILE_WRAP###-->
+				###LINK_CREATE_FILE_TEXT###
+			<!--###LINK_CREATE_FILE_WRAP###-->
+		</div>
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+	    	<img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/document-new.png" alt="folder" />
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+	    <div style="float:left;padding:4px 0px 0 5px;">
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+			###LINK_CREATE_FILE_FLASH_TEXT###
+		<!--###LINK_CREATE_FILE_FLASH_WRAP###-->
+		</div>
+    	<br style="clear:both;" />
+    </div>
+
+
+    <div class="fileexplorer_windowWrap">
+		<div class="fileexplorer_windowHeader">
+			<div class="fileexplorer_changeViewWrap">###CHANGE_VIEW###</div>
+			<div class="fileexplorer_pathNavigationWrap">###NAVIGATION_PATH###</div>
+		<br style="clear:both;" />
+    </div>
+
+    <!--  ###HEADER### end -->
+
+    <div class="fileexplorer_windowContent">
+    <!--  ###FILELIST### start -->
+
+        <!--  ###BACK_FOLDER### start -->
+        <div style="float:left;width:100px;height:100px;text-align:center;margin-bottom:10px;">
+            <div style="display: table; height: 83px; width:100px; #position: relative; overflow: hidden;">
+            <div style=" #position: absolute; top: 50%;display: table-cell; vertical-align: middle;">
+            <div style=" #position: relative; top: -50%;text-align:center;">
+            <!--###LINK_WRAP###-->###ICON###<!--###LINK_WRAP###-->
+            </div>
+            </div>
+            </div>
+            <!--###LINK_WRAP###-->[###FILENAME###]<!--###LINK_WRAP###-->
+        </div>
+        <!--  ###BACK_FOLDER### start -->
+
+        <!--  ###ITEM### start -->
+        <div id="###ITEM_ID###" style="float:left;width:100px;height:100px;text-align:center;margin-bottom:10px;">
+            <div style="display: table; height: 83px; width:100px; #position: relative; overflow: hidden;">
+            <div style=" #position: absolute; top: 50%;display: table-cell; vertical-align: middle;">
+            <div style=" #position: relative; top: -50%; text-align:center;">
+            	###ICON###
+            </div>
+            </div>
+            </div>
+            <!--###LINK_WRAP###-->[###FILENAME###]<!--###LINK_WRAP###-->
+        </div>
+        <!--  ###ITEM### end -->
+
+    <!--  ###FILELIST### end -->
+
+	<!-- stuff for the javascript menu START-->
+
+    <br style="clear:both;" />
+    </div>
+
+    </div>
+
+    <div class="contextMenu" id="cMenu_folder">
+    <ul>
+	    <li id="editFolder">###EDIT_ICON### ###EDIT_TEXT###</li>
+	    <li id="saveFolder">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="deleteFolder">###DELETE_ICON### ###DELETE_TEXT###</li>
+		<li id="browseFolder">###BROWSE_ICON### ###BROWSE_TEXT###</li>
+	</ul>
+	</div>
+
+	<div class="contextMenu" id="cMenu_file">
+    <ul>
+	    <li id="editFile">###EDIT_ICON### ###EDIT_TEXT###</li>
+	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
+	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
+	<!-- 		<li id="cut">###CUT_ICON### ###CUT_TEXT###</li> -->
+	</ul>
+	</div>
+	<!-- stuff for the javascript menu END -->
+
+
+<!--  ###REVIEW_TEMPLATE### end -->
+
+
+
+<!--  ###DETAIL_TEMPLATE### start
+				Available markers in this section:
+				###NOTE###
+				###DESCRIPTION###
+				###TITLE###
+				###IMAGE###
+				###FILENAME###
+			-->
+	<div style="padding:20px;background: white;">
+		<div style="padding:5px;border:1px dashed #AAAAAA;margin-bottom:20px;">
+		<strong>###NOTE###</strong><br />
+		###DESCRIPTION###
+		</div>
+		<div style="text-align:center;">
+		<!-- ###DOWNLOAD_LINK### -->###IMAGE### <!-- ###DOWNLOAD_LINK### --><br />
+		<!-- ###DOWNLOAD_LINK### -->###FILENAME###<!-- ###DOWNLOAD_LINK### -->
+		</div>
+	</div>
+<!--  ###DETAIL_TEMPLATE### end -->
+
+
+
+<!-- ###FOLDER_FORM### start -->
+
+<div style="clear:left;float:left;padding:20px;" class="file_explorerFolderForm">
+
+	<!-- ###FORM_WRAP### start -->
+
+		###ERROR###
+
+		<form method="post" action="###FORM_ACTIONURL###">
+
+			<div class="fileexplorer_text fileexplorer_formLabel">
+				###TITLE###
+			</div>
+			<div>
+			###INPUT_TITLE###
+			</div>
+			<div style="display:block;margin-top:10px;">
+
+				<div style="float:left;margin-right:10px; width:120px;">
+					<div class="fileexplorer_text fileexplorer_formLabel">###PERM_READ###</div>
+					###READ_PERMISSIONS###
+				</div>
+
+				<div style="float:left;">
+					<div class="fileexplorer_text fileexplorer_formLabel">###PERM_WRITE###</div>
+					###WRITE_PERMISSIONS###
+				</div>
+
+			</div>
+
+			<div style="clear:left;">
+				<input class="fileexplorer_formSubmit" type="submit" name="tx_fileexplorer_pi1[form][submit]" onclick="this.value='###SUBMIT_ONCLICK_VALUE###'" value="###SUBMIT_VALUE###" />
+			</div>
+
+			###HIDDEN###
+
+		</form>
+	<!-- ###FORM_WRAP### end -->
+
+	<!-- ###NO_PERMISSIONS### start -->
+
+		###NO_PERMISSIONS_TEXT###
+
+	<!-- ###NO_PERMISSIONS### end -->
+
+</div>
+
+
+
+<!-- ###FOLDER_FORM### end -->
+
+<!-- ###FILE_FORM### start -->
+
+	<div style="clear:left;float:left;padding:20px;">
+
+		<!-- ###FORM_WRAP### start -->
+
+			<div>
+				###ERROR###
+			</div>
+
+			<form method="post" action="###FORM_ACTIONURL###" enctype="multipart/form-data">
+
+			<div>
+				<div class="fileexplorer_text fileexplorer_formLabel">###FILE###</div>
+				###INPUT_FILE###
+				<div class="fileexplorer_text fileexplorer_formLabel">###TITLE###</div>
+				<input class="fileexplorer_formInputText" type="text" name="tx_fileexplorer_pi1[form][title]" value="###INPUT_TITLE###"/>
+				<div class="fileexplorer_text fileexplorer_formLabel">###DESCRIPTION###</div>
+				<textarea class="fileexplorer_formInputTextarea" name="tx_fileexplorer_pi1[form][description]">###INPUT_DESCRIPTION###</textarea>
+
+			</div>
+			<input class="fileexplorer_formSubmit" type="submit" name="tx_fileexplorer_pi1[form][submit]" onclick="this.value='###SUBMIT_ONCLICK_VALUE###'" value="###SUBMIT_VALUE###" />
+			###HIDDEN###
+
+			</form>
+
+		<!-- ###FORM_WRAP### end -->
+
+		<!-- ###NO_PERMISSIONS### start -->
+
+			###NO_PERMISSIONS_TEXT###
+
+		<!-- ###NO_PERMISSIONS### end -->
+
+	</div>
+
+<!-- ###FILE_FORM### end -->
+
+<!-- ###SUCCESS_PAGE###  start-->
+			<div style="text-align: center; margin-top: 10%;">###SUCCESS_TEXT###</div>
+
+			<script type="text/javascript">window.parent.location.reload();</script>
+
+<!-- ###SUCCESS_PAGE### end-->
+
+
+<!-- ###FILE_FORM_FLASH### start -->
+
+	###ERROR###
+
+	<script language="JavaScript">
+	// <!--
+
+	$('#flashUpload').flash(
+		{ src: '###FLASH_FILE###',
+		width: 370,
+		height: 240 },
+		{ version: 8 }
+	);
+	// -->
+	</script>
+
+	<div style="padding:15px 0 0 10px;">
+		<div id="flashUpload"></div>
+	</div>
+
+<!-- ###FILE_FORM_FLASH### end -->
+
+
+<!-- ###NOT_PERMITTED### start -->
+
+		Sie haben keine Schreibrechte.
+
+<!-- ###NOT_PERMITTED### end -->

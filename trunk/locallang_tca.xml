@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>language labels for file_explorer BE forms</description>
+		<type>database</type>
+		<csh_table></csh_table>
+		<fileId>EXT:file_explorer/locallang_tca.xml</fileId>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="file_explorer">File Explorer</label>
+			<label index="file_explorer.sheet_general">General</label>
+			<label index="file_explorer.default_view">First view</label>
+			<label index="file_explorer.startingpoint">Mount folder</label>
+			<label index="file_explorer.valid_fe_user_groups">Valid fe-usergroups</label>
+			<label index="file_explorer.root_fe_user_groups">Root fe-usergroups</label>
+			<label index="file_explorer.template_file">Template path (optional)</label>
+		</languageKey>
+	</data>
+</T3locallang>

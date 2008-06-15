@@ -1,0 +1,116 @@
+plugin.tx_fileexplorer_pi1 {
+	icons {
+		editIcon {
+			file =  EXT:file_explorer/icons/edit.gif
+			altText = editIcon
+			params = class="editIcon"
+		}
+		deleteIcon {
+			file =  EXT:file_explorer/icons/delete.gif
+			altText = editIcon
+			params = class="editIcon"
+		}
+		downloadIcon {
+			file =  EXT:file_explorer/icons/save.gif
+			altText = editIcon
+			params = class="editIcon"
+		}
+		viewIcon {
+			file =  EXT:file_explorer/icons/view.gif
+			altText = editIcon
+			params = class="editIcon"
+		}
+		browseIcon {
+			file =  EXT:file_explorer/icons/go-jump.gif
+			altText = browseIcon
+			params = class="browseIcon"
+		}
+	}
+
+	thumbnails {
+		as_images = jpg,jpeg,gif,png
+		list {
+			maxW = 22
+			maxH = 22
+			crop = 1
+		}
+		review {
+			maxW = 48
+			maxH = 48
+			crop = 1
+		}
+		detail {
+			maxW = 520
+			maxH = 400
+			crop = 0
+		}
+	}
+
+	upload_folder = uploads/tx_fileexplorer/
+	move_to_trash = 0
+	trash_folder = uploads/tx_fileexplorer/_trash_
+	unpackZipFile = 1
+
+
+ 	mimetypes {
+ 		empty.file_name =  EXT:file_explorer/icons/mimetypes/medium/empty.png
+		x-office-spreadsheet = xls,csv,ods
+		x-office-spreadsheet.file_name = EXT:file_explorer/icons/mimetypes/medium/x-office-spreadsheet.png
+		x-office-document = doc,odt,dot,txt,rtf,pdf,odp,ppt,sxi,sxw
+		x-office-document.file_name = EXT:file_explorer/icons/mimetypes/medium/x-office-document.png
+		image-x-generic	= psd,tif,tiff
+		mage-x-generic.file_name = EXT:file_explorer/icons/mimetypes/medium/image-x-generic.png
+		graphics-svg-editor = eps,ai,tiff
+		graphics-svg-editor.file_name = EXT:file_explorer/icons/mimetypes/medium/graphics-svg-editor.png
+		video-x-generic = avi,mpg,mpeg,wmv,swf,fla,mov
+		video-x-generic.file_name = EXT:file_explorer/icons/mimetypes/medium/video-x-generic.png
+		audio-x-generic = mp3,wav,wma,m3u
+		audio-x-generic.file_name = EXT:file_explorer/icons/mimetypes/medium/audio-x-generic.png
+		text-html  = php,css,htm,html,js,tmp,tmpl
+		text-html.file_name = EXT:file_explorer/icons/mimetypes/medium/text-html.png
+		font-x-generic  = ttf,otf
+		font-x-generic.file_name = EXT:file_explorer/icons/mimetypes/medium/font-x-generic.png
+		package-x-generic = zip,rar,tar
+		package-x-generic.file_name =  EXT:file_explorer/icons/mimetypes/medium/package-x-generic.png
+	}
+
+
+	files {
+		ignoreAllowed = 1
+		allowedTypes = pdf,gif,jpg,jpeg,png,txt
+		disallowedTypes = exe,js,php,php3,php4
+		maxKb = 8192
+	}
+
+	fe_display {
+		showFolderSize = 1
+		dateFormat = d.m.y H:i
+		max_fileLength {
+			detail = 100
+			list = 20
+			review = 10
+		}
+		max_titleLength {
+			detail = 100
+			list = 20
+			review = 10
+		}
+	}
+
+	}
+
+[globalVar = GP:tx_fileexplorer_pi1|popup = 1]
+	tx_fileexplorer_popup = PAGE
+	tx_fileexplorer_popup.includeCSS.file_explorer_Popup = EXT:file_explorer/template/style.css
+	tx_fileexplorer_popup {
+		config.disableallheader = 1
+		config.removeDefaultJS = 1
+		bodyTag = <body style="padding:10px;margin:0px;">
+ 		typeNum = 769
+		10 = TEXT
+		10.value = <div style="padding:0px;">
+		20 < plugin.tx_fileexplorer_pi1
+		30 = TEXT
+		30.value = </div>
+	}
+[global]
