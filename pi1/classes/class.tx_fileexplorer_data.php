@@ -164,7 +164,10 @@ class tx_fileexplorer_data
         if( count($error) > 0 ){
             return $error;
         }
-
+		$folderPermissions = $this->getFolderPermission($this->base->_GP['id'],$GLOBALS['TSFE']->fe_user->user);
+		if ($folderPermissions['write']!=1){
+			die('not allowed');
+		}
 		//get the parent folder
 		$tmpPath = $this->getPath($this->base->_GP['id'],$this->base->conf['root_page']);
 		if (count($tmpPath)>1){
@@ -327,6 +330,12 @@ class tx_fileexplorer_data
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
 	    $childItems += $GLOBALS['TYPO3_DB']->sql_num_rows($res);
 
+		$folderPermissions = $this->getFolderPermission($id,$this->base->conf['fe_user']);
+
+		if ($folderPermissions['write']!=1){
+			die('not allowed');
+		}
+
 	    $sql = "SELECT uid FROM `tx_fileexplorer_files` WHERE pid = ".$id." AND deleted = 0 AND hidden = 0 LIMIT 0,1";
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
 	    $childItems += $GLOBALS['TYPO3_DB']->sql_num_rows($res);
@@ -340,7 +349,6 @@ class tx_fileexplorer_data
             $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if($onFs){
 				//remove folder from fs
-
 				if (!@rmdir($this->base->conf['upload_folder'].$relPath))
 					die('error deleting folder from fs: '.$this->base->conf['upload_folder'].$relPath);
 			}
@@ -559,7 +567,6 @@ class tx_fileexplorer_data
 	{
 		$out = array('owner' => 0, 'read' => 0, 'write' => 0);
 		$arrUserGroups = explode(',', $feUser['usergroup']);
-
 		// check root user
 		$rootGroups = explode(',', $this->base->conf['root_fe_user_groups']);
         foreach ($rootGroups AS $rootGroup){
@@ -570,7 +577,6 @@ class tx_fileexplorer_data
 		        return $out;
 		    }
         }
-
 	    // check createUser
 	    $sql = "SELECT * FROM `pages` WHERE uid = ".$pageUid."
 	            AND tx_fileexplorer_feCrUserId = '".$feUser['uid']."'
