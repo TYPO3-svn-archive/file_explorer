@@ -174,8 +174,12 @@ class tx_fileexplorer_data
 			$parentFolder = $tmpPath[count($tmpPath)-2];
 			$parentFolderUid = $parentFolder['uid'];
 		}
-		else
+		else{
 			$parentFolderUid = $this->base->conf['root_page'];
+			//disallow normal user to rename folder in root folder
+			if ($folderPermissions['owner']!=1)
+			  die('not allowed');
+		}
 
 		if($this->getFolderId($this->base->_GP['form']['title'],$parentFolderUid) !=false && $this->getFolderId($this->base->_GP['form']['title'],$parentFolderUid) != $this->base->_GP['id']  ) die($this->base->pi_getLL('error.folderExisting'));
 
