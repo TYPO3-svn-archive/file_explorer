@@ -302,7 +302,7 @@ class tx_fileexplorer_data
 		if (!($admin))
 			$file = $this->getFile( $file_uid );
 
-		$parentFolderPerm = $this->dataObj->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
+		$parentFolderPerm = $this->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
 
 	    if( (count($file) > 0 && $parentFolderPerm['write']==1) || $admin){
 			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
