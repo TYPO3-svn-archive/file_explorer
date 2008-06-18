@@ -89,8 +89,15 @@ class tx_fileexplorer_controller
 			$view = new $newClass($this->base);
 	        if( $this->base->_GP['view'] == 'detail' )
 	        {
+				//check if the current user is allowed to view that file
 				$curFile = $this->dataObj->getFile($this->base->_GP['id']);
-	            $out .= $view->displayDetail($curFile,$this->dataObj->getFolderPath($curFile['pid'],$this->base->conf['root_page']));
+				$parentFolderPerm = $this->dataObj->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
+				if ($parentFolderPerm['read']==1){
+				  $out .= $view->displayDetail($curFile,$this->dataObj->getFolderPath($curFile['pid'],$this->base->conf['root_page']));
+				 }
+				else{
+				  	return $this->base->pi_getLL('error.noAccess');
+				}
 	        }
 	        elseif( !empty($this->base->_GP['view']) )
 	        {

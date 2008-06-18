@@ -302,7 +302,9 @@ class tx_fileexplorer_data
 		if (!($admin))
 			$file = $this->getFile( $file_uid );
 
-	    if( count($file) > 0 || $admin){
+		$parentFolderPerm = $this->dataObj->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
+
+	    if( (count($file) > 0 && $parentFolderPerm['write']==1) || $admin){
 			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
     	    $sql = "DELETE FROM `tx_fileexplorer_files` WHERE uid = ".$file_uid;
     	    $GLOBALS['TYPO3_DB']->sql_query($sql);
