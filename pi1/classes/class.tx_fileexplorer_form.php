@@ -231,7 +231,6 @@ class tx_fileexplorer_form
         $out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
 		$out['markerArray']['###SUBMIT_ONCLICK_VALUE###'] = $this->base->pi_getLL('form.submitDisabled');
 
-
         if( ($permissions['owner'] == 1 && $action == 'edit') || $action == 'create' ){
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
             $permission = array( 'read'  => $this->getCheckBoxes('read_perms'),
@@ -239,7 +238,7 @@ class tx_fileexplorer_form
         }
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
-			$out['markerArray']['###NO_PERMISSIONS_TEXT###'] =  $this->base->pi_getLL('form.noPerm');
+ 			$out['markerArray']['###NO_PERMISSIONS_TEXT###'] =  $this->base->pi_getLL('form.noPerm');
         }
 		$out['markerArray']['###PERM_READ###'] = $this->base->pi_getLL('form.permRead');
 		$out['markerArray']['###TITLE###'] = $this->base->pi_getLL('form.title');

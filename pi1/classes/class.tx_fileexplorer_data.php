@@ -330,17 +330,21 @@ class tx_fileexplorer_data
 
 	function deleteFolder($id,$onFs=true)
 	{
-	    $childItems = 0;
-
-	    $sql = "SELECT uid FROM `pages` WHERE pid = ".$id." AND deleted = 0 AND hidden = 0 LIMIT 0,1";
-	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
-	    $childItems += $GLOBALS['TYPO3_DB']->sql_num_rows($res);
 
 		$folderPermissions = $this->getFolderPermission($id,$this->base->conf['fe_user']);
 
 		if ($folderPermissions['write']!=1){
 			die('not allowed');
 		}
+
+		if(count($this->getPath($id,$this->base->conf['root_page']))==1 && !($folderPermissions['owner']==1)){
+			die('not allowed');
+		}
+
+	    $childItems = 0;
+	    $sql = "SELECT uid FROM `pages` WHERE pid = ".$id." AND deleted = 0 AND hidden = 0 LIMIT 0,1";
+	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
+	    $childItems += $GLOBALS['TYPO3_DB']->sql_num_rows($res);
 
 	    $sql = "SELECT uid FROM `tx_fileexplorer_files` WHERE pid = ".$id." AND deleted = 0 AND hidden = 0 LIMIT 0,1";
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
@@ -571,6 +575,7 @@ class tx_fileexplorer_data
 
 	function getFolderPermission($pageUid, $feUser)
 	{
+
 		$out = array('owner' => 0, 'read' => 0, 'write' => 0);
 		$arrUserGroups = explode(',', $feUser['usergroup']);
 		// check root user
