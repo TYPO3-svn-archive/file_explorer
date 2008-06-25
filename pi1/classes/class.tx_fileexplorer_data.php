@@ -157,14 +157,13 @@ class tx_fileexplorer_data
         return $error;
     }
 
-    function editFolder()
+    function editFolder($folderPermissions)
     {
     	$required = array('title');
         $error = $this->validateForm($required);
         if( count($error) > 0 ){
             return $error;
         }
-		$folderPermissions = $this->getFolderPermission($this->base->_GP['id'],$GLOBALS['TSFE']->fe_user->user);
 		if ($folderPermissions['write']!=1){
 			die('not allowed');
 		}
@@ -366,8 +365,12 @@ class tx_fileexplorer_data
 	    }
 	}
 
-	function editFile()
+	function editFile($folderPermission)
 	{
+		//the folder needs write permission
+		if ($folderPermission['write']!=1){
+		  die('not allowed');
+		}
 		$required = array('title');
 		$error = $this->validateForm($required);
         if( count($error) > 0 ){
@@ -380,8 +383,12 @@ class tx_fileexplorer_data
 		$GLOBALS['TYPO3_DB']->sql_query($sql);
 	}
 
-    function insertFile($user_id)
+    function insertFile($user_id,$folderPermission)
     {
+		//the folder needs write permission
+		if ($folderPermission['write']!=1){
+		  die('not allowed');
+		}
         $this->base->_GP['form']['title'] = (!empty($this->base->_GP['form']['title']))
         								? $this->base->_GP['form']['title'] : $_FILES['upload']['name'][0];
 

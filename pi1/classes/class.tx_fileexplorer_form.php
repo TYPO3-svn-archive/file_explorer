@@ -49,26 +49,29 @@ class tx_fileexplorer_form
 	    {
 	        case 'create_folder':
 	            $subpart = '###FOLDER_FORM###';
+                $currentFolder = $this->handleData->getFolder( $this->base->_GP['folder'] );
+                $this->base->_GP['form']['read_perms'] = $currentFolder['read_perms'];
+                $this->base->_GP['form']['write_perms'] = $currentFolder['write_perms'];
                 if( isset($this->base->_GP['form']['submit']) )
                 {
-                    $result = $this->handleData->insertFolder();
+                    $result = $this->handleData->insertFolder($currentFolder);
 					if (count($result) ==0){
 						$successControl = true;
 						break;
 					}
                 }
-                $currentFolder = $this->handleData->getFolder( $this->base->_GP['folder'] );
-                $this->base->_GP['form']['read_perms'] = $currentFolder['read_perms'];
-                $this->base->_GP['form']['write_perms'] = $currentFolder['write_perms'];
 	            $data = $this->getFolderForm('create', $result);
 	            $markerArray = $data['markerArray'];
 	            $subpartArray = $data['subpartArray'];
 	            break;
 	        case 'create_file':
 	            $subpart = '###FILE_FORM###';
+// print_r($this->base->_GP);
+//                 $currentFile = $this->handleData->getFile( $this->base->_GP['id'] );
+				$folderPermission = $this->handleData->getFolderPermission($this->base->_GP['folder'], $GLOBALS['TSFE']->fe_user->user);
 	            if( isset($this->base->_GP['form']['submit']) )
                 {
-                    $result = $this->handleData->insertFile($GLOBALS['TSFE']->fe_user->user['uid']);
+                    $result = $this->handleData->insertFile($GLOBALS['TSFE']->fe_user->user['uid'],$folderPermission);
 					if (count($result) ==0){
 						$successControl = true;
 						break;
@@ -79,21 +82,22 @@ class tx_fileexplorer_form
 	            $subpartArray = $data['subpartArray'];
 	            break;
 	        case 'create_file_flash':
+				$folderPermission = $this->handleData->getFolderPermission($this->base->_GP['folder'], $GLOBALS['TSFE']->fe_user->user);
 	            $subpart = '###FILE_FORM_FLASH###';
-	            $markerArray = $this->getFileFormFlash($result);
+				$markerArray = $this->getFileFormFlash($result,$folderPermission);
 	            break;
 	        case 'edit_folder':
+                $currentFolder = $this->handleData->getFolder( $this->base->_GP['id'] );
+                $permissions = $this->handleData->getFolderPermission($this->base->_GP['id'], $GLOBALS['TSFE']->fe_user->user);
 	            $subpart = '###FOLDER_FORM###';
                 if( isset($this->base->_GP['form']['submit']) )
                 {
-                    $result = $this->handleData->editFolder();
+                    $result = $this->handleData->editFolder($permissions);
 					if (count($result) ==0){
 						$successControl = true;
 						break;
 					}
                 }
-                $currentFolder = $this->handleData->getFolder( $this->base->_GP['id'] );
-                $permissions = $this->handleData->getFolderPermission($this->base->_GP['id'], $GLOBALS['TSFE']->fe_user->user);
                 $this->base->_GP['form'] = (!empty($this->base->_GP['form'])) ? $this->base->_GP['form'] : array();
                 $this->base->_GP['form'] = array_merge($currentFolder, $this->base->_GP['form']);
 	            $data = $this->getFolderForm('edit', $result, $permissions);
@@ -101,17 +105,18 @@ class tx_fileexplorer_form
 	            $subpartArray = $data['subpartArray'];
 	            break;
 	        case 'edit_file':
+                $currentFile = $this->handleData->getFile( $this->base->_GP['id'] );
+				$folderPermission = $this->handleData->getFolderPermission($currentFile['pid'], $GLOBALS['TSFE']->fe_user->user);
 	            $subpart = '###FILE_FORM###';
                 if( isset($this->base->_GP['form']['submit']) )
                 {
-                    $result = $this->handleData->editFile();
+                    $result = $this->handleData->editFile($folderPermission);
 					if (count($result) ==0){
 						$successControl = true;
 						break;
 					}
                 }
-                $currentFile = $this->handleData->getFile( $this->base->_GP['id'] );
-	            $data = $this->getFileForm('edit', $result, $currentFile);
+	            $data = $this->getFileForm('edit', $result, $currentFile,$folderPermission);
 	            $markerArray = $data['markerArray'];
 	            $subpartArray = $data['subpartArray'];
 	            break;
@@ -129,17 +134,21 @@ class tx_fileexplorer_form
 	}
 
 
-    function getFileFormFlash($error)
+    function getFileFormFlash($error,$folderPermission)
     {
+		if ($folderPermission['write']!=1){
+		  $out['###ERROR###'] = $this->base->pi_getLL('form.noPerm');
+		  $out['###FLASH_FILE###'] = '';
+		  return $out;
+		}
         $maxFilesize = ini_get('upload_max_filesize');
-
         $out['###ERROR###']      = $error_msg;
         $out['###FLASH_FILE###'] = "typo3conf/ext/file_explorer/pi1/flash_upload/upload.swf?folder_id=".$this->base->_GP['folder']."&amp;mfs=".$maxFilesize."&amp;fe_user_cookie=".$_COOKIE['fe_typo_user']."&amp;user_agent=".base64_encode($_SERVER['HTTP_USER_AGENT'])."&amp;timestamp=".mktime();
 
         return $out;
     }
 
-	function getFileForm($action = 'create', $error, $fileData = array())
+	function getFileForm($action = 'create', $error, $fileData = array(),$folderPermission = array())
 	{
 	    if( count($error) > 0 ){
 	        foreach ($error AS $msg){
@@ -175,7 +184,7 @@ class tx_fileexplorer_form
             $out['markerArray']['###INPUT_FILE###'] = '<div class="fileexplorer_formInputText_disabled">'.$this->base->_GP['form']['file'].'</div>';
         }
 
-		if( ($fileData['writePermission'] == 1 && $action == 'edit') || $action == 'create' )
+		if( ($fileData['writePermission'] == 1 && $action == 'edit' && $folderPermission['write']==1) || $action == 'create' )
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
