@@ -91,7 +91,7 @@ class tx_fileexplorer_controller
 	        {
 				//check if the current user is allowed to view that file
 				$curFile = $this->dataObj->getFile($this->base->_GP['id']);
-				$parentFolderPerm = $this->dataObj->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
+				$parentFolderPerm = $this->dataObj->getFolderPermission($curFile['pid'],$GLOBALS['TSFE']->fe_user->user);
 				if ($parentFolderPerm['read']==1){
 				  $out .= $view->displayDetail($curFile,$this->dataObj->getFolderPath($curFile['pid'],$this->base->conf['root_page']));
 				 }
