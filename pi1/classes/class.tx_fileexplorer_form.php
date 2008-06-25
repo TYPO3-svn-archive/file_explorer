@@ -136,7 +136,7 @@ class tx_fileexplorer_form
 
     function getFileFormFlash($error,$folderPermission)
     {
-		if ($folderPermission['write']!=1){
+		if ($folderPermission['write']!=1 && $folderPermission['owner'] !=1){
 		  $out['###ERROR###'] = $this->base->pi_getLL('form.noPerm');
 		  $out['###FLASH_FILE###'] = '';
 		  return $out;
@@ -183,8 +183,7 @@ class tx_fileexplorer_form
         if( $action == 'edit' ){
             $out['markerArray']['###INPUT_FILE###'] = '<div class="fileexplorer_formInputText_disabled">'.$this->base->_GP['form']['file'].'</div>';
         }
-
-		if( ($fileData['writePermission'] == 1 && $action == 'edit' && $folderPermission['write']==1) || $action == 'create' )
+		if( ($fileData['writePermission'] == 1 && $action == 'edit' && ( $folderPermission['write']==1 || $folderPermission['owner']==1)) || $action == 'create' )
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
@@ -240,7 +239,7 @@ class tx_fileexplorer_form
         $out['markerArray']['###SUBMIT_VALUE###'] = $this->base->pi_getLL('form.submit');
 		$out['markerArray']['###SUBMIT_ONCLICK_VALUE###'] = $this->base->pi_getLL('form.submitDisabled');
 
-        if( ($permissions['owner'] == 1 && $action == 'edit') || $action == 'create' ){
+        if( (($permissions['owner'] == 1 || $permissions['write']==1) && $action == 'edit') || $action == 'create' ){
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
             $permission = array( 'read'  => $this->getCheckBoxes('read_perms'),
                                  'write' => $this->getCheckBoxes('write_perms') );
