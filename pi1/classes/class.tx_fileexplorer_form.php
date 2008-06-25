@@ -185,7 +185,8 @@ class tx_fileexplorer_form
         if( $action == 'edit' ){
             $out['markerArray']['###INPUT_FILE###'] = '<div class="fileexplorer_formInputText_disabled">'.$this->base->_GP['form']['file'].'</div>';
         }
-		if( ($fileData['writePermission'] == 1 && $action == 'edit' && ( $folderPermission['write']==1 || $folderPermission['owner']==1)) || $action == 'create' )
+//!TODO:
+		if( (($fileData['writePermission'] == 1 ||  $folderPermission['write']==1 || $folderPermission['owner']==1)&& $action == 'edit' ) || $action == 'create' )
         	$out['subpartArray']['###NO_PERMISSIONS###'] = '';
         else{
         	$out['subpartArray']['###FORM_WRAP###'] = '';
