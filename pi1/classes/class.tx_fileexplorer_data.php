@@ -580,9 +580,9 @@ class tx_fileexplorer_data
 		return $relPath;
 	}
 
-	function getFolderPermission($pageUid, $feUser)
+	function getFolderPermission($pageUid, $feUser,$type='')
 	{
-
+// print_r($this->base->conf);die();
 		$out = array('owner' => 0, 'read' => 0, 'write' => 0);
 		$arrUserGroups = explode(',', $feUser['usergroup']);
 		// check root user
@@ -595,7 +595,7 @@ class tx_fileexplorer_data
 		        return $out;
 		    }
         }
-	    // check createUser
+	    // check createUser == owner?
 	    $sql = "SELECT * FROM `pages` WHERE uid = ".$pageUid."
 	            AND tx_fileexplorer_feCrUserId = '".$feUser['uid']."'
 	            AND tx_fileexplorer_feCrUserId != 0";
@@ -610,6 +610,7 @@ class tx_fileexplorer_data
 	    $sql = "SELECT uid,pid,tx_fileexplorer_readPublic,tx_fileexplorer_feCrUserId,tx_fileexplorer_read,tx_fileexplorer_write FROM `pages` WHERE `uid` = ".$pageUid;
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
         $row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+
 
         // check public folder
         if($row['tx_fileexplorer_readPublic'] == 1){
@@ -641,6 +642,13 @@ class tx_fileexplorer_data
 		        $out['write'] = 1;
 		    }
         }
+		//do not allow changes for folders in root folder
+		if ($type=='edit_folder' && $row['pid']==$this->base->conf['root_page']){
+// 			print_r($)
+			$out['write'] = 0;
+			return $out;
+		}
+
 	    return $out;
 	}
 

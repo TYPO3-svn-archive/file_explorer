@@ -87,8 +87,10 @@ class tx_fileexplorer_form
 				$markerArray = $this->getFileFormFlash($result,$folderPermission);
 	            break;
 	        case 'edit_folder':
+// print_r($this->base->_GP );
                 $currentFolder = $this->handleData->getFolder( $this->base->_GP['id'] );
-                $permissions = $this->handleData->getFolderPermission($this->base->_GP['id'], $GLOBALS['TSFE']->fe_user->user);
+// 				if ()
+                $permissions = $this->handleData->getFolderPermission($this->base->_GP['id'], $GLOBALS['TSFE']->fe_user->user,$action);
 	            $subpart = '###FOLDER_FORM###';
                 if( isset($this->base->_GP['form']['submit']) )
                 {
