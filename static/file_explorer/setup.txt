@@ -78,7 +78,7 @@ plugin.tx_fileexplorer_pi1 {
 	files {
 		ignoreAllowed = 1
 		allowedTypes = pdf,gif,jpg,jpeg,png,txt
-		disallowedTypes = exe,js,php,php3,php4
+		disallowedTypes = exe,js,php,php3,php4,.htaccess
 		maxKb = 8192
 	}
 
