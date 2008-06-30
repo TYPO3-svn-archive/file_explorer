@@ -107,7 +107,9 @@ class tx_fileexplorer_eIDinit
                 //$this->debug();
                 break;
             case 'delete_file':
-                $handleData->deleteFile($this->_GP['id']);
+                if (!$handleData->deleteFile($this->_GP['id'])){
+				  return $LOCAL_LANG[$this->lang]['error.deleteFile'];
+				 }
                 break;
             case 'delete_folder':
                 if($handleData->deleteFolder($this->_GP['id']) === false)

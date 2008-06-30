@@ -54,6 +54,7 @@
 		<label index="error.findingPath">Fatal error getting path.</label>
 		<label index="error.recursiveDelete">Error: This folder could not be deleted because it contains elements.</label>
 		<label index="error.noAccess">Access denied! Are you logged in?</label>
+		<label index="error.deleteFile">Error deleting file. Maybe no write permission in this folder.</label>
 
 
 
@@ -106,6 +107,7 @@
 		<label index="error.findingPath">Fataler Fehler: Pfad nicht gefunden.</label>
 		<label index="error.recursiveDelete">Fehler: Dieser Ordner konnte nicht gelöscht werden, da er Unterelemente enthält.</label>
 		<label index="error.noAccess">Zugriff verweigert! Sind sie eingeloggt?</label>
+		<label index="error.deleteFile">Fehler beim Löschen der Datei. Wahrscheinlich keine Schreibrechte in diesem Ordner.</label>
 
 
         <label index="error.field_validation">Sie haben nicht alle Felder ausgefuellt: </label>

@@ -257,7 +257,7 @@ class tx_fileexplorer_data
 
 	    $sql = "SELECT * FROM `tx_fileexplorer_files`
 	            WHERE uid = ".$id;
-	    $res = $GLOBALS['TYPO3_DB'] ->sql_query($sql);
+	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
 	    $out = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
 
 	    $out['writePermission'] = 0;
@@ -304,8 +304,9 @@ class tx_fileexplorer_data
 		//Thats here because of the file_explorer_check backend module... we don't check permissions there and don't want to
 		if (!($admin))
 			$file = $this->getFile( $file_uid );
-
-		$parentFolderPerm = $this->getFolderPermission($curFile['pid'],$this->base->conf['fe_user']);
+// print_r($this->base->conf['fe_user']);
+// print_r($curFile['pid']); die();
+		$parentFolderPerm = $this->getFolderPermission($file['pid'],$this->base->conf['fe_user']);
 
 	    if( (count($file) > 0 && $parentFolderPerm['write']==1) || $admin){
 			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
@@ -315,16 +316,19 @@ class tx_fileexplorer_data
 				if (!empty($this->base->conf['trash_folder']) && $this->base->conf['move_to_trash']==1){
 					if(!@rename($filePath,$this->base->conf['trash_folder'].$file['file'])){
 						die('error moving file: '.$filePath.' to trash folder: '.$this->base->conf['trash_folder']);
+						return false;
 					}
 				}
 				else{
 					if(!@unlink($filePath)){
 						die('error deleting file: '.$filePath);
+						return false;
 					}
 				}
 			}
-
-	    }
+			return true;
+	    } //no permission
+		else return false;
 	}
 
 	function deleteFolder($id,$onFs=true)
