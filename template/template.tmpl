@@ -116,33 +116,8 @@
 	<tbody>
     </table>
 
-	<!-- stuff for the javascript menu START-->
-
-    <br style="clear:both;" />
-
-    <div class="contextMenu" id="cMenu_folder">
-    <ul>
-	    <li id="editFolder">###EDIT_ICON### ###EDIT_TEXT###</li>
-	    <li id="saveFolder">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
-	    <li id="deleteFolder">###DELETE_ICON### ###DELETE_TEXT###</li>
-		<li id="browseFolder">###BROWSE_ICON### ###BROWSE_TEXT###</li>
-	</ul>
-	</div>
-
-	<div class="contextMenu" id="cMenu_file">
-    <ul>
-	    <li id="editFile">###EDIT_ICON### ###EDIT_TEXT###</li>
-	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
-	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
-	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
-	<!-- 	    <li id="cut">###CUT_ICON### ###CUT_TEXT###</li>			 -->
-	</ul>
-	</div>
-
-	<!-- stuff for the javascript menu END -->
 
 <!--  ###LIST_TEMPLATE### end -->
-
 
 
 <!--  ###REVIEW_TEMPLATE### start
@@ -234,12 +209,16 @@
 
     <!--  ###FILELIST### end -->
 
-	<!-- stuff for the javascript menu START-->
-
     <br style="clear:both;" />
     </div>
-
     </div>
+
+<!--  ###REVIEW_TEMPLATE### end -->
+
+
+
+
+<!--  ###JSMENU_RW### start stuff for the javascript menu (with write permissions)-->
 
     <div class="contextMenu" id="cMenu_folder">
     <ul>
@@ -256,15 +235,32 @@
 	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
 	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
 	    <li id="deleteFile">###DELETE_ICON### ###DELETE_TEXT###</li>
-	<!-- 		<li id="cut">###CUT_ICON### ###CUT_TEXT###</li> -->
+	<!-- 	    <li id="cut">###CUT_ICON### ###CUT_TEXT###</li>			 -->
 	</ul>
 	</div>
-	<!-- stuff for the javascript menu END -->
+
+<!--  ###JSMENU_RW### end -->
 
 
-<!--  ###REVIEW_TEMPLATE### end -->
+<!--  ###JSMENU_RO### start stuff for the javascript menu (read only permissions)-->
 
+    <div class="contextMenu" id="cMenu_folder">
+    <ul>
+	    <li id="editFolder">###EDIT_ICON### ###EDIT_TEXT###</li>
+	    <li id="saveFolder">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="deleteFolder">###DELETE_ICON### ###DELETE_TEXT###</li>
+		<li id="browseFolder">###BROWSE_ICON### ###BROWSE_TEXT###</li>
+	</ul>
+	</div>
 
+	<div class="contextMenu" id="cMenu_file">
+    <ul>
+	    <li id="saveFile">###DOWNLOAD_ICON### ###DOWNLOAD_TEXT###</li>
+	    <li id="viewFile">###VIEW_ICON### ###VIEW_TEXT###</li>
+	</ul>
+	</div>
+
+<!--  ###JSMENU_RO### end -->
 
 <!--  ###DETAIL_TEMPLATE### start
 				Available markers in this section:

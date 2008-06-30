@@ -55,25 +55,37 @@ class tx_fileexplorer_view
                 break;
 	    }
 	    $template = $this->cObj->getSubpart($this->templateCode, $mainSubpart);
-		$markerArray['###EDIT_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['editIcon.']);
-		$markerArray['###DELETE_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['deleteIcon.']);
-		$markerArray['###VIEW_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['viewIcon.']);
-		$markerArray['###DOWNLOAD_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['downloadIcon.']);
-		$markerArray['###BROWSE_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['browseIcon.']);
-
-
-		$markerArray['###EDIT_TEXT###']=$this->base->pi_getLL('contextMenu.edit');
-		$markerArray['###DELETE_TEXT###']=$this->base->pi_getLL('contextMenu.delete');
-		$markerArray['###VIEW_TEXT###']=$this->base->pi_getLL('contextMenu.view');
-		$markerArray['###DOWNLOAD_TEXT###']=$this->base->pi_getLL('contextMenu.download');
-		$markerArray['###BROWSE_TEXT###'] = $this->base->pi_getLL('contextMenu.browse');
-
-
+		
         $subpartArray['###FILELIST###'] = $this->wrapItems($template, '###FILELIST###', $data, $currentFolder,$path);
         $subpartArray['###HEADER###'] = $this->wrapHeader($template, '###HEADER###', $currentFolder, $path);
 
-    	return $this->cObj->substituteMarkerArrayCached($template, $markerArray, $subpartArray, array());
+    	$output = $this->cObj->substituteMarkerArrayCached($template, $markerArray, $subpartArray, array());
+		if ($currentFolder['permission']['write']==1){
+		   $output .= $this->createJsMenu('###JSMENU_RW###');
+		 }
+		 else{
+		   $output .= $this->createJsMenu('###JSMENU_RO###');
+		 }
+ 		return $output;
 	}
+
+	function createJsMenu($subpart){
+	  $template = $this->cObj->getSubpart($this->templateCode, $subpart);
+	  $markerArray['###EDIT_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['editIcon.']);
+	  $markerArray['###DELETE_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['deleteIcon.']);
+	  $markerArray['###VIEW_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['viewIcon.']);
+	  $markerArray['###DOWNLOAD_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['downloadIcon.']);
+	  $markerArray['###BROWSE_ICON###'] = $this->cObj->IMAGE($this->base->conf['icons.']['browseIcon.']);
+
+
+	  $markerArray['###EDIT_TEXT###']=$this->base->pi_getLL('contextMenu.edit');
+	  $markerArray['###DELETE_TEXT###']=$this->base->pi_getLL('contextMenu.delete');
+	  $markerArray['###VIEW_TEXT###']=$this->base->pi_getLL('contextMenu.view');
+	  $markerArray['###DOWNLOAD_TEXT###']=$this->base->pi_getLL('contextMenu.download');
+	  $markerArray['###BROWSE_TEXT###'] = $this->base->pi_getLL('contextMenu.browse');
+	  return $this->cObj->substituteMarkerArrayCached($template, $markerArray, array(), array());
+	}
+ 
 
 	function displayDetail($file,$path)
 	{
