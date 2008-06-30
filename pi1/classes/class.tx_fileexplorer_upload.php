@@ -137,15 +137,17 @@ class tx_fileexplorer_upload
 			return $file;
 		}
 		$number = '01';
-		$file = $number.'_'.$file;
-		while( is_file($this->path.'/'.$path.$file) ){
+		$fileBasename = substr($file, 0, strripos($file, '.'));
+		$fileExt = strrchr($file, '.');
+		$file = $fileBasename.'_'.$number;
+		while( is_file($this->path.'/'.$path.$file.$fileExt) ){
 			$number = ((int)$number+1);
 			for($i=0; $i <= (2-strlen($number)); $i++){
 				$number = '0'.$number;
 			}
-			$file = $number.substr($file, 2);
+			$file = $fileBasename.'_'.$number;
 		}
-		return	$file;
+		return	$file.$fileExt;
 	}
 
 

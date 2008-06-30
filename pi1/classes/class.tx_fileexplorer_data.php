@@ -326,7 +326,7 @@ class tx_fileexplorer_data
 					}
 				}
 			}
-// 			return true;
+ 			return true;
 	    } //no permission
 		else return false;
 	}
