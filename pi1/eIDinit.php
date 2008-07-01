@@ -103,8 +103,9 @@ class tx_fileexplorer_eIDinit
         {
             case 'create_file_flash':
                 $_FILES['upload'] = $this->getFlashFiles();
-                $handleData->insertFile($this->conf['fe_user']['uid']);
-                //$this->debug();
+				//!TODO: Check if this will work
+				$folderPermission = $this->handleData->getFolderPermission($this->base->_GP['folder'],$this->conf['fe_user']);
+				$handleData->insertFile($this->conf['fe_user']['uid'],$folderPermission);
                 break;
             case 'delete_file':
                 if (!$handleData->deleteFile($this->_GP['id'])){
@@ -158,7 +159,7 @@ class tx_fileexplorer_eIDinit
         $_SERVER['HTTP_USER_AGENT']
         ;
 
-        file_put_contents ( PATH_site."typo3conf/ext/file_explorer/pi1/log/".date('Y-m-d_H_i_s',time())."_".microtime_float()."_request.log",
+        file_put_contents ( PATH_site."/log/".date('Y-m-d_H_i_s',time())."_".microtime_float()."_request.log",
         $content
         );
         //echo $content;
