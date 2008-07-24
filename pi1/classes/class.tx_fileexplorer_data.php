@@ -299,16 +299,13 @@ class tx_fileexplorer_data
         return $out;
     }
 
-	function deleteFile($file_uid,$onFs=true,$admin=false)
+	function deleteFile($file_uid,$onFs=true)
 	{
-		//Thats here because of the file_explorer_check backend module... we don't check permissions there and don't want to
-		if (!($admin))
-			$file = $this->getFile( $file_uid );
-
+		$file = $this->getFile( $file_uid );
 		$parentFolderPerm = $this->getFolderPermission($file['pid'],$this->base->conf['fe_user']);
 
-	    if( (count($file) > 0 && $parentFolderPerm['write']==1) || $admin){
-			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
+	    if( (count($file) > 0 && $parentFolderPerm['write']==1)){
+			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file_uid,$this->base->conf['root_page']).$file['file'];
     	    $sql = "DELETE FROM `tx_fileexplorer_files` WHERE uid = ".$file_uid;
     	    $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if ($onFs){
@@ -342,7 +339,7 @@ class tx_fileexplorer_data
 		if(count($this->getPath($id,$this->base->conf['root_page']))==1 && !($folderPermissions['owner']==1)){
 			die('not allowed');
 		}
-		
+
 		$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
 		$fullPath = PATH_site.$this->base->conf['upload_folder'].$relPath;
 
@@ -732,6 +729,10 @@ class tx_fileexplorer_data
 
 	    $data = array();
         while( false != ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
+			//check if the folder exists on the filessystem, otherwise we won't display it
+ 			$currentFolderPath = PATH_site.$this->base->conf['upload_folder'].$this->getFolderPath($row['uid'],$this->base->conf['root_page']);
+			if (!file_exists($currentFolderPath))
+			  continue;
 		    $permission['folder'] = $this->getFolderPermission($row['uid'], $GLOBALS['TSFE']->fe_user->user);
             if( $permission['folder']['read'] == 1 ){
                 $data[$i] = $row;
@@ -746,6 +747,12 @@ class tx_fileexplorer_data
 	            ORDER BY t1.title";
 	    $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
 		while( false != ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
+
+			//check if the file exists on the filessystem, otherwise we won't display it
+ 			$currentFilePath = PATH_site.$this->base->conf['upload_folder'].$this->getFolderPath($row['pid'],$this->base->conf['root_page']);
+			if (!file_exists($currentFilePath.$row['file']))
+			  continue;
+
             $data[$i] = $row;
 		    if( $row['feCrUserId'] == $GLOBALS['TSFE']->fe_user->user['uid'] ){
 		        $data[$i]['owner'] = 1;
