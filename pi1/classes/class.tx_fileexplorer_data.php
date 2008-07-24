@@ -304,8 +304,7 @@ class tx_fileexplorer_data
 		//Thats here because of the file_explorer_check backend module... we don't check permissions there and don't want to
 		if (!($admin))
 			$file = $this->getFile( $file_uid );
-// print_r($this->base->conf['fe_user']);
-// print_r($curFile['pid']); die();
+
 		$parentFolderPerm = $this->getFolderPermission($file['pid'],$this->base->conf['fe_user']);
 
 	    if( (count($file) > 0 && $parentFolderPerm['write']==1) || $admin){
@@ -363,13 +362,9 @@ class tx_fileexplorer_data
 			  $this->filesToDel = array();
  			  $this->foldersFilesNotDeleted = array();
 			  $this->getFolderFilesRecursive($id);
-// 			  print_r($this->filesToDel);
 			  $this->foldersToDel = array_reverse($this->foldersToDel); //sort with depth
-// 			  print_r($this->foldersToDel);
 
-// die();
 			  foreach ($this->filesToDel as $curFile){
-// 				print_r('deleting file with uid'.$curFile['uid']);
 				if (!$this->deleteFile($curFile['uid'])){
 				  array_push($this->foldersFilesNotDeleted,$curFile['fpath'].$curFile['fname']);
 				}	
@@ -381,7 +376,7 @@ class tx_fileexplorer_data
 				$GLOBALS['TYPO3_DB']->sql_query($sql);
 				if($onFs){
 				  //remove folder from fs
-// 				  if (!@rmdir($curFolder['fullPath']))
+ 				  if (!@rmdir($curFolder['fullPath']))
 					array_push($this->foldersFilesNotDeleted,$curFolder['fullPath']);
 				}
 			  }
@@ -393,8 +388,7 @@ class tx_fileexplorer_data
 				return $errorText;
 			  }
 			  return true;
-			}
-// 	        return false;
+			}// end of recursive delete
 	    }
 	    else{
 			$sql = "DELETE FROM `pages` WHERE uid = ".$id;
@@ -436,7 +430,6 @@ class tx_fileexplorer_data
 		// 						if (substr($fullPath,-1,1) === "/"){
 		// 							$fullPath = substr($fullPath,0,-1);
 		// 						}
-// 		$depth = substr_count($fullPath,'/');
 		array_push($this->foldersToDel,array('uid' => $row['uid'], 'fullPath' => $fullPath/*, 'depth'=>$depth*/));
 		$this->getFolderFilesRecursive($row['uid']);
 	  }
@@ -481,7 +474,6 @@ class tx_fileexplorer_data
 		if( count($uploadErr) > 0 ){
 				return $uploadErr;
         }
-
 
 		if ($this->base->conf['unpackZipFile'] == 1 && $upload->checkForZipFile()){
 			$this->handleZipFileExtraction($upload->file['tmp_name'],$upload->getFilename(),$this->getFolderPath($this->base->_GP['folder'],$this->base->conf['root_page']),$user_id,$this->base->_GP['folder']);
@@ -660,7 +652,6 @@ class tx_fileexplorer_data
 
 	function getFolderPermission($pageUid, $feUser,$type='')
 	{
-// print_r($this->base->conf);die();
 		$out = array('owner' => 0, 'read' => 0, 'write' => 0);
 		$arrUserGroups = explode(',', $feUser['usergroup']);
 		// check root user

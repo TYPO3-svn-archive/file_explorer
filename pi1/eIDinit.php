@@ -89,12 +89,9 @@ class tx_fileexplorer_eIDinit
         switch ($this->_GP['action'])
         {
             case 'create_file_flash':
-// 				$this->debugToFile('all_good');
                 $_FILES['upload'] = $this->getFlashFiles();
 				//!TODO: Check if this will work
 				$folderPermission = $handleData->getFolderPermission($this->base->_GP['folder'],$this->conf['fe_user']);
-// 				$this->debugToFile('all_good? really?');
-// 				$this->debugToFile($folderPermission);
 				$handleData->insertFile($this->conf['fe_user']['uid'],$folderPermission);
                 break;
             case 'delete_file':
@@ -166,46 +163,5 @@ $eIDinit = t3lib_div::makeInstance('tx_fileexplorer_eIDinit');
 
 echo $eIDinit->main();
 
-/*
-$_FILES = array
-(
-    'Filedata' => Array
-        (
-            'name' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-            'type' => 'application/octet-stream',
-            'tmp_name' => '/tmp/phpVAh3rz',
-            'error' => '0',
-            'size' => '4781'
-        )
-);
-$_GET =
-Array
-(
-    'eID' => 'tx_fileexplorer_pi1',
-    'fe_typo_user' => $_COOKIE['fe_typo_user'],
-    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
-    'action' => 'create_file_flash',
-    'folder' => '76',
-);
-$_POST =
-Array
-(
-    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-    'Upload' => 'Submit Query',
-);
-$_REQUEST =
-Array
-(
-    'eID' => 'tx_fileexplorer_pi1',
-    'fe_typo_user' => $_COOKIE['fe_typo_user'],
-    'user_agent' => base64_encode($_SERVER['HTTP_USER_AGENT']),
-    'action' => 'create_file_flash',
-    'folder' => '76',
-    'Filename' => '00-Linkin_Park-Hybrid_Theory-IRC.nfo',
-    'Upload' => 'Submit Query',
-);
-*/
-
-// simulate flash
 
 ?>
