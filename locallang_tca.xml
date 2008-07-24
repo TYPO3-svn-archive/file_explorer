@@ -11,6 +11,7 @@
 			<label index="file_explorer">File Explorer</label>
 			<label index="file_explorer.sheet_general">General</label>
 			<label index="file_explorer.default_view">First view</label>
+			<label index="file_explorer.startfolder">The initial Folder to show</label>
 			<label index="file_explorer.startingpoint">Mount folder</label>
 			<label index="file_explorer.valid_fe_user_groups">Valid fe-usergroups</label>
 			<label index="file_explorer.root_fe_user_groups">Root fe-usergroups</label>

@@ -28,7 +28,7 @@ plugin.tx_fileexplorer_pi1 {
 	}
 
 	thumbnails {
-		as_images = jpg,jpeg,gif,png
+		as_images = jpg,jpeg,gif,png,bmp
 		list {
 			maxW = 22
 			maxH = 22
@@ -50,7 +50,7 @@ plugin.tx_fileexplorer_pi1 {
 	move_to_trash = 0
 	trash_folder = uploads/tx_fileexplorer/_trash_
 	unpackZipFile = 1
-
+	recursiveDelete = 0
 
  	mimetypes {
  		empty.file_name =  EXT:file_explorer/icons/mimetypes/medium/empty.png

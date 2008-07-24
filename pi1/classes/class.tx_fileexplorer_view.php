@@ -150,7 +150,7 @@ class tx_fileexplorer_view
 	                        'titleText' => $alt
             			);
 
-			$imageSize = getimagesize($file);
+			$imageSize = @getimagesize($file);
 			$img_w = $imageSize[0];
 			$img_h = $imageSize[1];
 

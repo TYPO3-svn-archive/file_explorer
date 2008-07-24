@@ -113,10 +113,14 @@ class tx_fileexplorer_eIDinit
 				 }
                 break;
             case 'delete_folder':
-                if($handleData->deleteFolder($this->_GP['id']) === false)
+				$errorMsg = $handleData->deleteFolder($this->_GP['id']);
+
+                if( $errorMsg !== true)
                 {
-                	return $LOCAL_LANG[$this->lang]['error.recursiveDelete'];
+					return $errorMsg;
+//                 	return $LOCAL_LANG[$this->lang]['error.recursiveDelete'];
                 }
+				return '';
                 break;
             case 'download_file':
                 $handleData->downloadFile($this->_GP['id']);

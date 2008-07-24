@@ -343,6 +343,9 @@ class tx_fileexplorer_data
 		if(count($this->getPath($id,$this->base->conf['root_page']))==1 && !($folderPermissions['owner']==1)){
 			die('not allowed');
 		}
+		
+		$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
+		$fullPath = PATH_site.$this->base->conf['upload_folder'].$relPath;
 
 	    $childItems = 0;
 	    $sql = "SELECT uid FROM `pages` WHERE pid = ".$id." AND deleted = 0 AND hidden = 0 LIMIT 0,1";
@@ -354,20 +357,91 @@ class tx_fileexplorer_data
 	    $childItems += $GLOBALS['TYPO3_DB']->sql_num_rows($res);
 
 	    if($childItems > 0){
-	        return false;
+			//check if we allow recursive delete
+			if ($this->base->conf['recursiveDelete'] == 1){
+			  $this->foldersToDel = array();
+			  $this->filesToDel = array();
+ 			  $this->foldersFilesNotDeleted = array();
+			  $this->getFolderFilesRecursive($id);
+// 			  print_r($this->filesToDel);
+			  $this->foldersToDel = array_reverse($this->foldersToDel); //sort with depth
+// 			  print_r($this->foldersToDel);
+
+// die();
+			  foreach ($this->filesToDel as $curFile){
+// 				print_r('deleting file with uid'.$curFile['uid']);
+				if (!$this->deleteFile($curFile['uid'])){
+				  array_push($this->foldersFilesNotDeleted,$curFile['fpath'].$curFile['fname']);
+				}	
+			  }
+			  //add this relative root folder to the list
+			  array_push($this->foldersToDel,array('uid' => $id, 'fullPath' => $fullPath));
+			  foreach ($this->foldersToDel as $curFolder){
+				$sql = "DELETE FROM `pages` WHERE uid = ".$curFolder['uid'];
+				$GLOBALS['TYPO3_DB']->sql_query($sql);
+				if($onFs){
+				  //remove folder from fs
+// 				  if (!@rmdir($curFolder['fullPath']))
+					array_push($this->foldersFilesNotDeleted,$curFolder['fullPath']);
+				}
+			  }
+			  if (!empty($this->foldersFilesNotDeleted)){
+				$errorText = 'Could not remove the following folders/files: '."\n";
+				foreach ($this->foldersFilesNotDeleted as $curFileFolder){
+				  $errorText .= '- '.$curFileFolder."\n";
+				}
+				return $errorText;
+			  }
+			  return true;
+			}
+// 	        return false;
 	    }
 	    else{
-			$relPath=$this->getFolderPath($id,$this->base->conf['root_page']);
 			$sql = "DELETE FROM `pages` WHERE uid = ".$id;
             $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if($onFs){
 				//remove folder from fs
-				if (!@rmdir($this->base->conf['upload_folder'].$relPath))
+				if (!@rmdir($fullPath))
 					die('error deleting folder from fs: '.$this->base->conf['upload_folder'].$relPath);
 			}
-            return true;
+        return true;
 	    }
 	}
+
+
+
+	function getFolderFilesRecursive($pid){
+	  //get the files in current folder
+	  $sql = "SELECT uid,pid,file FROM `tx_fileexplorer_files`
+	  WHERE deleted = 0 AND hidden = 0 AND pid = ".(int)$pid;
+	  $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
+	  while( false != ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
+		$sourcePath = PATH_site.$this->base->conf['upload_folder'].$this->getFolderPath($row['pid'],$this->base->conf['root_page']);
+		array_push($this->filesToDel,array('uid' => $row['uid'], 'fname'=>$row['file'],'fpath'=>str_replace('//','/',$sourcePath)));
+	  }
+	  
+	  //get all folders in current folder ($pid)
+	  $sql = "SELECT title, uid, tx_fileexplorer_read, tx_fileexplorer_write, tx_fileexplorer_feCrUserId
+	  FROM pages
+	  WHERE doktype = 150 AND deleted = 0 AND pid = ".(int)$pid;
+	  $res = $GLOBALS['TYPO3_DB']->sql_query($sql);
+
+	  while( false != ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res)) ){
+		$folderPermissions = $this->getFolderPermission($row['uid'], $this->base->conf['fe_user']);
+		if($folderPermissions['read'] != 1 || $folderPermissions['write'] != 1){
+		  array_push($this->foldersFilesNotDeleted,$fullPath);
+		  continue;
+		}
+		$fullPath = PATH_site.$this->base->conf['upload_folder'].$this->getFolderPath($row['uid'],$this->base->conf['root_page']);
+		// 						if (substr($fullPath,-1,1) === "/"){
+		// 							$fullPath = substr($fullPath,0,-1);
+		// 						}
+// 		$depth = substr_count($fullPath,'/');
+		array_push($this->foldersToDel,array('uid' => $row['uid'], 'fullPath' => $fullPath/*, 'depth'=>$depth*/));
+		$this->getFolderFilesRecursive($row['uid']);
+	  }
+	}
+
 
 	function editFile($folderPermission)
 	{
@@ -425,7 +499,7 @@ class tx_fileexplorer_data
 
 	function storeFileEntry($userId,$filename,$fileTitle,$folderId,$fileDescription='')
 	{
-		   $insert = array('pid'			=> $folderId,
+		   $insert = array('pid'		=> $folderId,
 						'title'			=> $fileTitle,
 						'tstamp'		=> time(),
 						'crdate'		=> time(),

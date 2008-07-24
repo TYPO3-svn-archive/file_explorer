@@ -99,6 +99,9 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 				foreach ($arrayMarkers as $marker) {
 				$markerArray['###'.strtoupper($marker).'###'] = $this->pi_getLL('js.'.$marker);
 			}
+			if ($this->conf['recursiveDelete']==1){
+			  $markerArray['###FOLDERDELCONFIRM###'] = $this->pi_getLL('js.folderDelConfirmRecursive');
+			}
 			$key = 'EXT:file_explorer_contextmenu' . md5($templateCode);
 			if (!isset($GLOBALS['TSFE']->additionalHeaderData[$key])) {
 				$GLOBALS['TSFE']->additionalHeaderData[$key] = t3lib_div::wrapJS($cObj->substituteMarkerArrayCached($contextmenuJS,$markerArray));
@@ -110,7 +113,14 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 			$this->conf = array_merge($this->conf, $GLOBALS["TSFE"]->fe_user->getKey('ses', $this->prefixId));
 		}
 
-		$this->_GP['folder'] = ( !empty($this->_GP['folder']) ) ? $this->_GP['folder'] : $this->conf['root_page'];
+		if (empty($this->_GP['folder'])){
+		  if (!empty($this->conf['startfolder'])){
+			$this->_GP['folder'] = $this->conf['startfolder'];
+		  }
+		  else{
+			$this->_GP['folder'] = $this->conf['root_page'];
+		  }
+		}
 		$this->conf['upload_folder'] = ( $this->conf['upload_folder'][strlen($this->conf['upload_folder'])-1] == '/' ) ? $this->conf['upload_folder'] : $this->conf['upload_folder'].'/';
 		$this->conf['trash_folder'] = ( $this->conf['trash_folder'][strlen($this->conf['trash_folder'])-1] == '/' ) ? $this->conf['trash_folder'] : $this->conf['trash_folder'].'/';
 

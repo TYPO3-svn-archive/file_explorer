@@ -40,7 +40,9 @@
 		<label index="list.author">author</label>
 		<label index="list.size">size</label>
 		<label index="js.folderDelConfirm">Are you sure to delete this folder?\n\"</label>
+		<label index="js.folderDelConfirmRecursive">Are you sure to delete this folder and its files and subfolders recursively?\n\"</label>
 		<label index="js.fileDelConfirm">Are you sure to delete this file?\n\"</label>
+
 		<label index="extract.descriptionFile">File extracted from </label>
 
 
@@ -95,7 +97,10 @@
 		<label index="list.author">Autor</label>
 		<label index="list.size">Grösse</label>
 		<label index="js.folderDelConfirm">Wollen Sie diesen Ordner wirklich loeschen?\n\"</label>
+		<label index="js.folderDelConfirmRecursive">Wollen Sie diesen Ordner und seine Dateien und Unterordner wirklich löschen?\n\"</label>
+
 		<label index="js.fileDelConfirm">Wollen Sie diese Datei wirklich loeschen?\n\"</label>
+
 		<label index="extract.descriptionFile">Datei extrahiert aus </label>
 
 		<label index="error.fileTooBig">Datei ist zu gross, maximum: </label>
