@@ -49,19 +49,6 @@ require_once(t3lib_extMgm::extPath('file_explorer')."pi1/classes/class.tx_fileex
 
 	//$LOCAL_LANG = t3lib_div::readLLfile('EXT:fefilebrowser/pi1/locallang.xml','de');
 
-
-
-
-/**
- * Simple function to replicate PHP5 behaviour
- */
-function microtime_float()
-{
-   list($usec, $sec) = explode(" ", microtime());
-   return (float)$usec;
-}
-
-
 class tx_fileexplorer_eIDinit
 {
 	var $prefixId      = 'tx_fileexplorer_pi1';		// Same as class name
@@ -102,9 +89,12 @@ class tx_fileexplorer_eIDinit
         switch ($this->_GP['action'])
         {
             case 'create_file_flash':
+// 				$this->debugToFile('all_good');
                 $_FILES['upload'] = $this->getFlashFiles();
 				//!TODO: Check if this will work
-				$folderPermission = $this->handleData->getFolderPermission($this->base->_GP['folder'],$this->conf['fe_user']);
+				$folderPermission = $handleData->getFolderPermission($this->base->_GP['folder'],$this->conf['fe_user']);
+// 				$this->debugToFile('all_good? really?');
+// 				$this->debugToFile($folderPermission);
 				$handleData->insertFile($this->conf['fe_user']['uid'],$folderPermission);
                 break;
             case 'delete_file':
@@ -142,32 +132,34 @@ class tx_fileexplorer_eIDinit
         }
         return $out;
     }
-    function debug()
-    {
-        $content =
-        "files\n".
-        print_r($_FILES, true).
-        "get\n".
-        print_r($_GET, true).
-        "post\n".
-        print_r($_POST, true).
-        "request\n".
-        print_r($_REQUEST, true).
-        "cookie\n".
-        print_r($_COOKIE, true).
-        "conf\n".
-        print_r($this->conf, true).
-        "_GP\n".
-        print_r($this->_GP, true).
-        "user_agent\n".
-        $_SERVER['HTTP_USER_AGENT']
-        ;
+	function debugToFile($additionalContent)
+	{
+	  $content =
+	  "files\n".
+	  print_r($_FILES, true).
+	  "get\n".
+	  print_r($_GET, true).
+	  "post\n".
+	  print_r($_POST, true).
+	  "request\n".
+	  print_r($_REQUEST, true).
+	  "cookie\n".
+	  print_r($_COOKIE, true).
+	  "conf\n".
+	  print_r($this->conf, true).
+	  "_GP\n".
+	  print_r($this->_GP, true).
+	  "user_agent\n".
+	  $_SERVER['HTTP_USER_AGENT'].
+	  "\nadditional_output:\n".
+	  $additionalContent."\n----EOF----\n"
+	  ;
 
-        file_put_contents ( PATH_site."/log/".date('Y-m-d_H_i_s',time())."_".microtime_float()."_request.log",
-        $content
-        );
-        //echo $content;
-    }
+	  file_put_contents ( PATH_site.date('Y-m-d').'_'.time()."_request.log",
+										  $content
+										  );
+										  echo $content;
+	}
 }
 
 $eIDinit = t3lib_div::makeInstance('tx_fileexplorer_eIDinit');
