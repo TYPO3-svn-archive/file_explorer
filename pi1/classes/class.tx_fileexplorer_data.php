@@ -305,7 +305,7 @@ class tx_fileexplorer_data
 		$parentFolderPerm = $this->getFolderPermission($file['pid'],$this->base->conf['fe_user']);
 
 	    if( (count($file) > 0 && $parentFolderPerm['write']==1)){
-			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file_uid,$this->base->conf['root_page']).$file['file'];
+			$filePath = $this->base->conf['upload_folder']. $this->getFolderPath($file['pid'],$this->base->conf['root_page']).$file['file'];
     	    $sql = "DELETE FROM `tx_fileexplorer_files` WHERE uid = ".$file_uid;
     	    $GLOBALS['TYPO3_DB']->sql_query($sql);
 			if ($onFs){
@@ -385,7 +385,8 @@ class tx_fileexplorer_data
 				return $errorText;
 			  }
 			  return true;
-			}// end of recursive delete
+			}
+			else return 'error: not allowed to delete folder that is not empty';// end of recursive delete, not allowed to delete recursive message
 	    }
 	    else{
 			$sql = "DELETE FROM `pages` WHERE uid = ".$id;

@@ -2,6 +2,7 @@
     var menu,
     trigger,
     content,
+	ro = false,
     hash;
     var defaults = {
         menuStyle: {
@@ -27,7 +28,7 @@
         }
     };
 
-    $.fn.contextMenu = function (id, options) {
+    $.fn.contextMenu = function (id, options,ro) {
         options = options || defaults;
         if (!menu) {
             menu = $("<div id='jqContextMenu'></div>").hide().css({
@@ -47,7 +48,8 @@
             defaults.itemStyle, options.itemStyle || {}),
             itemHoverStyle: $.extend({},
             defaults.itemHoverStyle, options.itemHoverStyle || {}),
-            bindings: options.bindings || {}
+            bindings: options.bindings || {},
+			readOnly: ro
         });
         var index = hash.length - 1;
         $(this).bind("contextmenu",
@@ -66,6 +68,10 @@
     function display(index, trigger, e) {
         cur = hash[index];
         content = $(cur.id).find("ul:first").clone(true);
+		if (cur.readOnly == 1){
+  		  content.find("#deleteFolder").remove();
+		  content.find("#editFolder").remove();
+		}
         content.css(cur.menuStyle).find("li").css(cur.itemStyle).hover(function () {
             $(this).css(cur.itemHoverStyle);
         },

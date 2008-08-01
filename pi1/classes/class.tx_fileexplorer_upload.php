@@ -108,7 +108,7 @@ class tx_fileexplorer_upload
 
     function convertToFilename($string)
 	{
-		$string = strtolower( $string );
+ 	  if ($this->base->conf['staticConf']['lowercase'] == 1) $string = strtolower( $string );
 
 		$search = array(
 // 						'/ö/',
@@ -116,7 +116,7 @@ class tx_fileexplorer_upload
 // 							'/ä/',
 							'/ß/',
 // 							'/ /',
- 							'/[^a-z0-9\-_\ \.\äöü]/',
+ 							'/[^a-zA-Z0-9\-_\ \.\äöü]/',
 							'/\_{1,}/'
 							);
 		$replace = array(
@@ -128,7 +128,8 @@ class tx_fileexplorer_upload
  							'',
 							'_'
 							);
-		return preg_replace($search, $replace, $string);
+		$string = preg_replace($search, $replace, $string);
+		return $string;
 	}
 
 	function getNotExistingFileame($file,$path)

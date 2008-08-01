@@ -1,4 +1,4 @@
-function fileexplorer_cMenu(id, pageId, type, title, view) {
+function fileexplorer_cMenu(id, pageId, type, title, view, ro) {
     $('#cMenuItem_' + id).contextMenu('#cMenu_' + type, {
         menuStyle: {
             border: "1px solid #000",
@@ -40,7 +40,6 @@ function fileexplorer_cMenu(id, pageId, type, title, view) {
             },
 
             "#viewFile": function (t) {
-
                 var tmpHref = 'index.php?id=' + pageId + '&type=769&tx_fileexplorer_pi1[popup]=1&tx_fileexplorer_pi1[view]=detail&tx_fileexplorer_pi1[id]=' + id + '&height=550&amp;width=600';
                 tb_show(title, tmpHref, false);
             },
@@ -71,5 +70,5 @@ function fileexplorer_cMenu(id, pageId, type, title, view) {
                 }
             }
         }
-    });
+    }, ro);
 }

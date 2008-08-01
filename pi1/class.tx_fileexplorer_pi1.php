@@ -79,7 +79,7 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 	    		    }
 	    		}
 			}
-
+			$this->conf['staticConf']=unserialize($GLOBALS['TSFE']->TYPO3_CONF_VARS['EXT']['extConf'][$this->extKey]);
 
 			$templateCode = $this->cObj->fileResource($this->conf['templateFile']);
 			$key = 'EXT:file_explorer_js_css' . md5($templateCode);

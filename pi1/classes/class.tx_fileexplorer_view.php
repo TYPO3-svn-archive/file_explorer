@@ -205,6 +205,7 @@ class tx_fileexplorer_view
 	        $thumb['crop']   = (int)$this->base->conf['thumbnails.'][$this->view.'.']['crop'];
 	    }
 	    {
+			
 	    	$thumb['params'] .= ' id="cMenuItem_'.$id.'" onmouseover="fileexplorer_cMenu('.$id.','.$GLOBALS['TSFE']->id.',\'file\',\''.$title.'\',\''.$this->view.'\');" ';
 	    }
 
@@ -298,7 +299,11 @@ class tx_fileexplorer_view
 				}
 
 		        $thumb['file']        = 'typo3conf/ext/'.$this->base->extKey.'/icons/mimetypes/'.$this->iconSize.'/folder-open.png';
-		        $thumb['params']      = 'class="fileexplorer_folderIcon" id="cMenuItem_'.$row['uid'].'" onmouseover="fileexplorer_cMenu('.$row['uid'].','.$GLOBALS['TSFE']->id.',\'folder\',\''.(str_replace("'", "\'", $row['title'])).'\',\''.$this->view.'\');"';
+				$readOnlyFolder = 0;
+				if($row['write'] !=1){
+				  $readOnlyFolder = 1;
+				}
+		        $thumb['params']      = 'class="fileexplorer_folderIcon" id="cMenuItem_'.$row['uid'].'" onmouseover="fileexplorer_cMenu('.$row['uid'].','.$GLOBALS['TSFE']->id.',\'folder\',\''.(str_replace("'", "\'", $row['title'])).'\',\''.$this->view.'\',\''.$readOnlyFolder.'\');"';
 		        $link['folder']      = htmlspecialchars($this->base->pi_getPageLink($GLOBALS['TSFE']->id,'', array($this->base->prefixId.'[folder]' => $row['uid'],$this->base->prefixId.'[view]'   => $this->base->_GP['view']) ));
 
                 if($row['write'] != 1){

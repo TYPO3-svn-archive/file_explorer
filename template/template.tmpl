@@ -11,6 +11,8 @@
 	<script type="text/javascript" src="###SITE_REL_PATH###js/flash_detection.js"></script>
 	<script type="text/javascript" src="###SITE_REL_PATH###js/flexigrid.pack.js"></script>
 	<script type="text/javascript" src="###SITE_REL_PATH###js/contextmenu.js"></script>
+ 	<script type="text/javascript" src="###SITE_REL_PATH###js/jquery.dataTables.js"></script>
+	
 
 <!-- ###HEADER_ADDITIONS### end -->
 
@@ -37,13 +39,26 @@
 -->
 
     <!--  ###HEADER### start -->
-
     <script type="text/javascript">
 	$(document).ready(function() {
-			$('.flexme1').flexigrid({height: "auto"});
+			$('.flexme1').flexigrid({height: "auto",
+// 									 colModel : [ {width : 40, sortable : true, align: 'center'},
+// 									 ]
+// 			$('.flexme1').dataTable({
+// 			  "aoColumns": [
+// 							  /* Browser */  null,
+// 							  /* Browser */  null,
+// 									/* Platform */ null,
+// 									/* Version */  { "bVisible": true },
+// 									/* Grade */    { "sClass": "center" }
+// 									],
+// 			 "bLengthChange": false
+
+ 			} );
+	
 	});
 	</script>
-
+	
     <div style="display:block;padding-bottom:10px;">
 	    <!--###LINK_CREATE_FOLDER_WRAP###-->
 			<img style="float:left;" src="typo3conf/ext/file_explorer/icons/mimetypes/small/folder-new.png" alt="folder" />
