@@ -1,0 +1,2 @@
+  # cat=basic//10; type=boolean; label=Lowercase file and foldernames: If true all folder and filenames will be lowercased. Let this off only on unix servers.
+lowercase = 0
