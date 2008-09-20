@@ -24,6 +24,7 @@
 ***************************************************************/
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
+require_once( PATH_t3lib . 'class.t3lib_basicfilefunc.php');
 
 class tx_fileexplorer_upload
 {
@@ -109,7 +110,7 @@ class tx_fileexplorer_upload
     function convertToFilename($string)
 	{
  	  if ($this->base->conf['staticConf']['lowercase'] == 1) $string = strtolower( $string );
-
+/*
 		$search = array(
 // 						'/ö/',
 // 							'/ü/',
@@ -128,7 +129,10 @@ class tx_fileexplorer_upload
  							'',
 							'_'
 							);
-		$string = preg_replace($search, $replace, $string);
+		$string = preg_replace($search, $replace, $string);*/
+		// Initialize new fileFunc object
+		$this->fileFunc = t3lib_div::makeInstance( 't3lib_basicFileFunctions' );
+		return $this->fileFunc->cleanFileName($string);
 		return $string;
 	}
 
