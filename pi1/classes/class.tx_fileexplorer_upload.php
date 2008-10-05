@@ -142,7 +142,13 @@ class tx_fileexplorer_upload
 			return $file;
 		}
 		$number = '01';
-		$fileBasename = substr($file, 0, strrpos($file, '.'));
+		//fix for #1621
+		if(strrpos($file, '.') > 0){
+		  $fileBasename = substr($file, 0, strrpos($file, '.'));
+		}
+		else{
+		  $fileBasename = $file;
+		}
 		$fileExt = strrchr($file, '.');
 		$file = $fileBasename.'_'.$number;
 		while( is_file($this->path.'/'.$path.$file.$fileExt) ){
