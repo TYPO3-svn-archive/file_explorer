@@ -55,7 +55,7 @@ class tx_fileexplorer_view
                 break;
 	    }
 	    $template = $this->cObj->getSubpart($this->templateCode, $mainSubpart);
-		
+
         $subpartArray['###FILELIST###'] = $this->wrapItems($template, '###FILELIST###', $data, $currentFolder,$path);
         $subpartArray['###HEADER###'] = $this->wrapHeader($template, '###HEADER###', $currentFolder, $path);
 
@@ -85,7 +85,7 @@ class tx_fileexplorer_view
 	  $markerArray['###BROWSE_TEXT###'] = $this->base->pi_getLL('contextMenu.browse');
 	  return $this->cObj->substituteMarkerArrayCached($template, $markerArray, array(), array());
 	}
- 
+
 
 	function displayDetail($file,$path)
 	{
@@ -95,7 +95,7 @@ class tx_fileexplorer_view
 	    $mainSubpart = '###DETAIL_TEMPLATE###';
 	    $template = $this->cObj->getSubpart($this->templateCode, $mainSubpart);
 
-	    $thumb = $this->getFileThumbParams($file['file'],'',$path,$file['title']);
+	    $thumb = $this->getFileThumbParams($file['file'],$file['uid'],$path,$file['title']);
 
 	    $file['description'] = (empty($file['description']))?$this->base->pi_getLL('detail.no_description'):$file['description'];
         $link['download'] = 'index.php?eID='.$this->base->prefixId.'&amp;action=download_file&amp;id='.$file['uid'];
@@ -205,7 +205,7 @@ class tx_fileexplorer_view
 	        $thumb['crop']   = (int)$this->base->conf['thumbnails.'][$this->view.'.']['crop'];
 	    }
 	    {
-			
+
 	    	$thumb['params'] .= ' id="cMenuItem_'.$id.'" onmouseover="fileexplorer_cMenu('.$id.','.$GLOBALS['TSFE']->id.',\'file\',\''.$title.'\',\''.$this->view.'\');" ';
 	    }
 
