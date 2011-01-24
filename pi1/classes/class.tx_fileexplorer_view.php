@@ -98,7 +98,12 @@ class tx_fileexplorer_view
 	    $thumb = $this->getFileThumbParams($file['file'],$file['uid'],$path,$file['title']);
 
 	    $file['description'] = (empty($file['description']))?$this->base->pi_getLL('detail.no_description'):$file['description'];
-        $link['download'] = 'index.php?eID='.$this->base->prefixId.'&amp;action=download_file&amp;id='.$file['uid'];
+
+	    if ($this->base->conf['fe_display.']['detailView.']['directLink'] > 0) {
+			$link['download'] = $this->base->conf['upload_folder'].$path.$file["file"];
+		} else {
+			$link['download'] = 'index.php?eID='.$this->base->prefixId.'&amp;action=download_file&amp;id='.$file['uid'];
+		}
 
 	    $markerArray['###IMAGE###'] = $this->getThumb($thumb['file'], $file['title'], $thumb['params']);
 	    $markerArray['###DESCRIPTION###']  = nl2br($file['description']);

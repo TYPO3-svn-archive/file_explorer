@@ -48,14 +48,12 @@ class tx_fileexplorer_upload
 
 	function uploadFileChecks($targetFolder,$file){
 		$error = array();
-// 	    $file = ;
-// print_r($file);
         if( empty($file['tmp_name']) || empty($file['name']) ){
             return array($this->base->pi_getLL('error.noFile'));
         }
 
         if( $this->base->conf['files.']['ignoreAllowed'] == 0 && $this->checkFileType($file['name'], $this->base->conf['files.']['allowedTypes'], true) === false ){
-            $error[] = $this->pi_getLL('error.wrongFileType').$this->base->conf['files.']['allowedTypes'];
+            $error[] = $this->base->pi_getLL('error.wrongFileType').$this->base->conf['files.']['allowedTypes'];
         }
         elseif( $this->base->conf['files.']['ignoreAllowed'] == 1 && $this->checkFileType($file['name'], $this->base->conf['files.']['disallowedTypes'], false) === false ){
         	$error[] = $this->base->pi_getLL('error.wrongFileType').$this->base->conf['files.']['disallowedTypes'];
@@ -110,26 +108,6 @@ class tx_fileexplorer_upload
     function convertToFilename($string)
 	{
  	  if ($this->base->conf['staticConf']['lowercase'] == 1) $string = strtolower( $string );
-/*
-		$search = array(
-// 						'/ö/',
-// 							'/ü/',
-// 							'/ä/',
-							'/ß/',
-// 							'/ /',
- 							'/[^a-zA-Z0-9\-_\ \.\äöü]/',
-							'/\_{1,}/'
-							);
-		$replace = array(
-// 						 'oe',
-// 							'ue',
-// 							'ae',
-							'ss',
-// 							'_',
- 							'',
-							'_'
-							);
-		$string = preg_replace($search, $replace, $string);*/
 		// Initialize new fileFunc object
 		$this->fileFunc = t3lib_div::makeInstance( 't3lib_basicFileFunctions' );
 		return $this->fileFunc->cleanFileName($string);

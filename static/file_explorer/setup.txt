@@ -46,6 +46,8 @@ plugin.tx_fileexplorer_pi1 {
 		}
 	}
 
+	#use to override default template
+	# template = fileadmin/templates/ext_templates/file_explorer.tmpl
 	upload_folder = uploads/tx_fileexplorer/
 	move_to_trash = 0
 	trash_folder = uploads/tx_fileexplorer/_trash_
@@ -83,6 +85,7 @@ plugin.tx_fileexplorer_pi1 {
 	}
 
 	fe_display {
+		detailView.directLink = 0
 		showFolderSize = 1
 		dateFormat = d.m.y H:i
 		max_fileLength {

@@ -58,8 +58,6 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 			}
 		}
 
- 		$this->conf['templateFile'] = ( !empty($this->conf['template']) ) ? $this->conf['template']: 'EXT:'.$this->extKey.'/template/template.tmpl';
-
 
 		if($this->_GP['popup'] != 1)
 		{
@@ -81,7 +79,10 @@ class tx_fileexplorer_pi1 extends tslib_pibase
 			}
 			$this->conf['staticConf']=unserialize($GLOBALS['TSFE']->TYPO3_CONF_VARS['EXT']['extConf'][$this->extKey]);
 
+			$this->conf['templateFile'] = ( !empty($this->conf['template']) ) ? $this->conf['template']: 'EXT:'.$this->extKey.'/template/template.tmpl';
+
 			$templateCode = $this->cObj->fileResource($this->conf['templateFile']);
+
 			$key = 'EXT:file_explorer_js_css' . md5($templateCode);
 			if (!isset($GLOBALS['TSFE']->additionalHeaderData[$key])) {
 				$headerParts = $this->cObj->getSubpart($templateCode, '###HEADER_ADDITIONS###');

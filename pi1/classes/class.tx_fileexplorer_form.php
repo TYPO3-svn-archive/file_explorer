@@ -1,4 +1,4 @@
-<?php
+	<?php
 /***************************************************************
 *  Copyright notice
 *
@@ -50,8 +50,6 @@ class tx_fileexplorer_form
 	        case 'create_folder':
 	            $subpart = '###FOLDER_FORM###';
                 $currentFolder = $this->handleData->getFolder( $this->base->_GP['folder'] );
-                $this->base->_GP['form']['read_perms'] = $currentFolder['read_perms'];
-                $this->base->_GP['form']['write_perms'] = $currentFolder['write_perms'];
                 if( isset($this->base->_GP['form']['submit']) )
                 {
                     $result = $this->handleData->insertFolder($currentFolder);
@@ -59,6 +57,9 @@ class tx_fileexplorer_form
 						$successControl = true;
 						break;
 					}
+                }else{
+					$this->base->_GP['form']['read_perms'] = $currentFolder['read_perms'];
+					$this->base->_GP['form']['write_perms'] = $currentFolder['write_perms'];
                 }
 	            $data = $this->getFolderForm('create', $result);
 	            $markerArray = $data['markerArray'];
